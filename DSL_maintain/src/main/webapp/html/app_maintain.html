@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Standard Meta -->
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<!-- Site Properities -->
+<title>Maintain Rules</title>
+
+</head>
+<body id="rule_engine">
+
+
+	<!-- edit body html -->
+	<div id="edit_rule_body" class="ui modal scrolling">
+		<i class="close icon"></i>
+		<div class="header">Edit Rule Body</div>
+		<div class="content">
+			<textarea id="code" name="code" rows="50" cols="120">
+//Pattern for groovy script
+def p = ~/.*\.groovy/
+new File( 'd:\\scripts' ).eachFileMatch(p) {f ->
+  // imports list
+  def imports = []
+  f.eachLine {
+    // condition to detect an import instruction
+    ln -> if ( ln =~ '^import .*' ) {
+      imports << "${ln - 'import '}"
+    }
+  }
+  // print thmen
+  if ( ! imports.empty ) {
+    println f
+    imports.each{ println "   $it" }
+  }
+}
+</textarea>
+
+		</div>
+		<div class="actions">
+			<div class="ui button">Cancel</div>
+			<div class="ui button">Save</div>
+		</div>
+	</div>
+
+
+
+
+
+	<!-- main body -->
+	<div class="ui celled grid">
+		<div class="ten wide middle column">
+
+			<div class="ui tabular filter menu">
+				<a class="active item" data-tab="rule">Rule Maintain</a> 
+    <a  class="item" data-tab="new_rule">Create Rule</a> 
+    <a class="item"
+					data-tab="event">Event Maintain</a>
+			</div>
+
+
+
+			<!-- event body -->
+			<div class="ui divided inbox selection list active tab"
+				data-tab="event">
+				<div class="ui small form segment">
+					<div class="four fields">
+						<div class="field">
+							<label>Event Type</label>
+							<div class="ui selection dropdown">
+								<input type="hidden" name="gender">
+								<div class="text">Service</div>
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item" data-value="0">Service</div>
+									<div class="item" data-value="1">UI field</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="field">
+							<label>Event name</label> <input placeholder="name" type="text">
+						</div>
+
+
+					</div>
+					<div class="ui blue small submit button">Search</div>
+
+				</div>
+
+
+
+<!-- event tree html -->
+				<div class="ui vertically divided grid">
+					<div class="ui celled grid">
+						<div class="eight wide column">
+
+							<div class="zTreeDemoBackground left">
+								<ul id="treeDemo" class="ztree"></ul>
+							</div>
+						</div>
+
+
+
+						<div class="eight wide column">
+
+							<div class="ui segment">
+								<b><label>description</label></b>
+								<p>here display event , rule group or rule description</p>
+							</div>
+
+
+
+							<label></label>
+							<div class="ui icon input">
+								<input type="text" placeholder="Search rule"> <i
+									class="search icon"></i>
+							</div>
+
+
+
+							<div class="ui blue small submit button">Add to Event</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+			<!-- Create Rule  -->
+
+			<div class="ui divided inbox selection list active tab"
+				data-tab="new_rule">
+				<div class="ui form">
+					<div class="four fields">
+
+
+						<div class="field">
+							<label>Business Unit</label>
+							<div class="ui selection dropdown">
+								<input type="hidden" name="gender">
+								<div class="text">casualty</div>
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item" data-value="0">casualty</div>
+									<div class="item" data-value="1">contract</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="field">
+							<label>Product</label>
+							<div class="ui selection dropdown">
+								<input type="hidden" name="gender">
+								<div class="text">casualty</div>
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item" data-value="0">General Liability</div>
+									<div class="item" data-value="1">Inland Marine</div>
+								</div>
+							</div>
+						</div>
+						<div class="field">
+							<label>Version</label>
+							<div class="ui selection dropdown">
+								<input type="hidden" name="gender">
+								<div class="text">casualty</div>
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item" data-value="0">1</div>
+									<div class="item" data-value="1">2</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="field">
+							<label>Rule level</label>
+							<div class="ui selection dropdown">
+								<input type="hidden" name="Rule level">
+								<div class="text">Coverage</div>
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item" data-value="0">Coverage</div>
+									<div class="item" data-value="1">Location</div>
+									<div class="item" data-value="2">Classification</div>
+									<div class="item" data-value="3">Policy</div>
+									<div class="item" data-value="4">Benifit</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="field">
+							<label>Rule Type</label>
+							<div class="ui selection dropdown">
+								<input type="hidden" name="Rule Type">
+								<div class="text">Coverage</div>
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item" data-value="0">Service</div>
+									<div class="item" data-value="1">UI</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="field">
+							<label>Rule Group</label>
+							<div class="ui selection dropdown">
+								<input type="hidden" name="Rule Group">
+								<div class="text">Coverage</div>
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item" data-value="0">Validation Policy</div>
+									<div class="item" data-value="1">Check Claim Data</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="field">
+							<label>Rule name</label> <input placeholder="name" type="text">
+						</div>
+
+
+
+						<div class="field">
+							<label>description</label>
+							<textarea></textarea>
+						</div>
+
+						<div class="field">
+							<input type="file" name="somename" size="chars">
+
+						</div>
+
+
+
+						<div class="field">
+							<div class="ui blue submit button">Save</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+
+
+   <!-- rule - maintain  -->
+			<div id="rule_maintian" class="ui divided inbox selection list tab"
+				data-tab="rule">
+				<div class="ui small form segment">
+					<div class="four fields">
+
+						<div class="field">
+							<input id="rule-search" placeholder="Search" type="text">
+						</div>
+
+						<div class="field">
+							<div id="search_rule" class="ui blue small submit button">Search</div>
+						</div>
+
+					</div>
+
+				</div>
+
+
+
+    <!-- rule table record -->
+				<table id="rule_table" class="ui table segment">
+					<thead>
+						<tr>
+							<th>Rule Name</th>
+							<th>Rule Type</th>
+							<th>Rule Group</th>
+							<th>Business Unit</th>
+							<th>Product</th>
+							<th>Version</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+				</table>
+
+
+
+ <div id="edit_rule_attr" class="ui celled grid">
+  <div class="row">
+    <div class="twelve wide column" style="">
+     <div class="ui ribbon label">description</div>
+       <textarea id="description" name="description" rows="5" cols="100"></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="four wide column">
+       <label>Business Unit </label>
+       <div class="ui selection dropdown">
+        <input type="hidden" name="gender">
+        <div class="text">casualty</div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+         <div class="item" data-value="0">casualty</div>
+         <div class="item" data-value="1">contract</div>
+        </div>
+       </div>
+    </div>
+     <div class="four wide column">
+      <label>Product</label>
+       <div class="ui selection dropdown">
+        <input type="hidden" name="gender">
+        <div class="text">casualty</div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+         <div class="item" data-value="0">General Liability</div>
+         <div class="item" data-value="1">Inland Marine</div>
+        </div>
+       </div>
+    </div>
+     <div class="four wide column">
+      <label>Version</label>
+       <div class="ui selection dropdown">
+        <input type="hidden" name="gender">
+        <div class="text">casualty</div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+         <div class="item" data-value="0">1</div>
+         <div class="item" data-value="1">2</div>
+        </div>
+       </div>
+    </div>
+  </div>
+</div>
+
+
+
+				<div class="ui vertically divided grid">
+					<div class="ui celled grid">
+
+
+      <!-- rule tree html -->
+						<div class="eight wide column">
+							<div class="zTreeDemoBackground left">
+								<ul id="treeDemo2" class="ztree"></ul>
+							</div>
+						</div>
+
+
+						<div class="eight wide column">
+							<div class="ui segment">
+								<b><label>description</label></b>
+								<p>here display event , rule group or rule description</p>
+							</div>
+
+
+							<div class="ui buttons">
+								<div id="rule_edit" class="ui button">Edit</div>
+								<div class="or"></div>
+								<div id="add_new_rule" class="ui positive button">Add a
+									new Rule</div>
+							</div>
+
+							<div class="ui input">
+								<input id="rule_group_label" type="text"
+									placeholder="Group name...">
+							</div>
+
+							<div id="add_rule_group" class="ui primary button">Add to
+								Rule Gruop</div>
+
+						
+
+							<div id="lables_space" class="ui segment">
+								<div class="four fields">
+									<div class="field">
+										<div class="ui blue labels">
+											<a class="ui label"> Save Policy <i class="icon close"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+  </div>
+</div>
+</div>
+</body>
+
+<link rel="stylesheet" type="text/css" href="/dsl/html/css/semantic.css">
+<link rel="stylesheet" href="/dsl/html/css/demo.css" type="text/css">
+<link rel="stylesheet" href="/dsl/html/css/zTreeStyle/zTreeStyle.css"
+ type="text/css">
+ <link rel="stylesheet" href="/dsl/html/css/codemirror.css">
+
+
+
+
+
+<script src="/dsl/html/scripts/jquery.js"></script>
+<script src="/dsl/html/scripts/jquery.address.js"></script>
+<script src="/dsl/html/javascript/underscore.js"></script>
+<script src="/dsl/html/javascript/backbone.js"></script>
+
+<script type="text/template" id="rule-template">
+        <p hidden><%- id %></p>
+        <td><%- name %></td>
+        <td><%- ruleType %></td>
+         <td><%- ruleGroup %></td>
+        <td><%- business_unit %></td>
+         <td><%- product%></td>
+        <td><%- verison %></td>
+     <td><%- status %></td>
+  </script>
+<script type="text/template" id="label-template">
+            <a class="ui label">
+             <%- name %><i class="icon close"></i>
+            </a>
+ </script>
+
+
+
+<script type="text/javascript"
+	src="/dsl/html/javascript/jquery.ztree.core-3.5.min.js"></script>
+<script src="/dsl/html/javascript/semantic.js"></script>
+<script src="/dsl/html/javascript/codemirror.js"></script>
+<script src="/dsl/html/javascript/groovy.js"></script>
+<script src="/dsl/html/label.js"></script>
+<script src="/dsl/html/rules.js"></script>
+<script src="/dsl/html/app_miantian.js"></script>
+
+
+<script type="text/javascript">
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        mode: "text/x-groovy"
+        });
+  </script>
+
+<SCRIPT type="text/javascript">
+$(document)
+  .ready(function() {
+
+    $('.filter.menu .item')
+      .tab()
+    ;
+
+    
+
+    $('.ui.dropdown')
+      .dropdown()
+    ;
+
+  })
+;
+</SCRIPT>
+
+</html>
