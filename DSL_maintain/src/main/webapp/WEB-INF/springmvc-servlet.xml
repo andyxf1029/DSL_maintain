@@ -31,4 +31,10 @@
 		class="com.ebao.gs.framework.rule.maintain.web.rule.RuleResourceHandler" />
 	<bean id="RuleListSearchHandler"
 		class="com.ebao.gs.framework.rule.maintain.web.rule.RuleListSearchHandler" />
+		<bean id="EventListSearchHandler"
+		class="com.ebao.gs.framework.rule.maintain.web.rule.EventListSearchHandler" />
+		<bean id="RuleGourpResouceHandler"
+		class="com.ebao.gs.framework.rule.maintain.web.rule.RuleGourpResouceHandler" />
+		<bean id="EventResourceHandler"
+		class="com.ebao.gs.framework.rule.maintain.web.rule.EventResourceHandler" />
 </beans>

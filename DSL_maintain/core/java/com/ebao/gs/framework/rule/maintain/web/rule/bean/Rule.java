@@ -6,6 +6,16 @@ public class Rule {
 
 	private String ruleGroup;
 
+	private RuleContent content;
+
+	public RuleContent getContent() {
+		return content;
+	}
+
+	public void setContent(RuleContent content) {
+		this.content = content;
+	}
+
 	public String getRuleGroup() {
 		return ruleGroup;
 	}

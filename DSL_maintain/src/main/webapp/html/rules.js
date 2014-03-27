@@ -11,18 +11,29 @@ var Rule  = Backbone.Model.extend({
           "product":"CGL",
           "verison":"1",
           "status":"approved",
-          "description":""
+          "description":"description"
         }
     });
 
 
  var RuleList = Backbone.Collection.extend({
 
-  url: "http://localhost:8080/dsl/restful/rulelist",
+  url: "restful/rulelist",
 
    model: Rule,
   
  });
+
+
+ var RuleBody = Backbone.Model.extend({
+    urlRoot: "restful/rule/body",
+
+
+
+
+ });
+
+
 
 
 var RuleView = Backbone.View.extend({
@@ -44,7 +55,7 @@ var RuleView = Backbone.View.extend({
 var RulesView = Backbone.View.extend({
 
   
-tagName: "tbody",
+    tagName: "tbody",
     
 
     render: function() {

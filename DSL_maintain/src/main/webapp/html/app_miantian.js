@@ -3,10 +3,15 @@ var AppView = Backbone.View.extend({
     el: $("#rule_maintian"),
 
     initialize: function() {
-
       $("#edit_rule_attr").hide();
-       
-        
+
+    
+
+      this.editor = CodeMirror.fromTextArea(document.getElementById("rule_content"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        mode: "text/x-groovy"
+        });
     },
 
      events:{  
@@ -14,9 +19,27 @@ var AppView = Backbone.View.extend({
         'click #add_new_rule' :'addRule',
         'click #rule_edit' :   'editRule',
         'click #add_rule_group' :   'addToRuleGroup',
-        'click #rule_table>tbody>tr' : 'selectRow'
-        
+        'click #rule_table>tbody>tr' : 'selectRow',
+        'click #update_rule' :'updateRule',
+        'click #rule_group_labels>a>i' :'deleteGroup',
+    },
 
+
+
+    initEvent:function(){
+      alert(1);
+    },
+
+   
+    deleteGroup: function(e){
+      $(e.currentTarget).parent().remove();
+    },
+
+    updateRule: function(ruleList) {
+      console.log("updateRule");
+
+          $("#edit_rule_attr").hide();
+          
     },
 
    
@@ -32,16 +55,18 @@ var AppView = Backbone.View.extend({
 
 
       var rule_id = $(e.currentTarget).find("p").text()
-    
-           var zNodes2 =[
-{ name:"Check premium", open:true,
-children: [
-{ name:"Save Policy",
-children: [
-{ name:"Before save"},
-{ name:"Finalize Quote"},
-]},
-]},
+
+      var selectedRule = this.rulesRecord.get(rule_id);
+
+      var zNodes2 =[
+  { name:selectedRule.get("name"), open:true,
+    children: [
+    { name:"Save Policy",
+    children: [
+    { name:"Before save"},
+    { name:"Finalize Quote"},
+    ]},
+        ]},
 
 ];
 
@@ -52,7 +77,23 @@ $("#edit_rule_attr").show();
 
 //update description
 
+    var rule_description = $("#rule_description")
+    rule_description.empty()
+    rule_description.append(selectedRule.get("description"))
 
+
+    var rule_body = new RuleBody({id:rule_id});
+
+    $.when(rule_body.fetch()).then(function(){
+
+           var rule_content =  $("#rule_content")
+          rule_content.empty();
+          rule_content.append(rule_body.get("content"));
+
+        }
+      )
+
+    this.rule_body=rule_body;
     },
    
 
@@ -65,7 +106,7 @@ $("#edit_rule_attr").show();
     var label = new Lable({name:label_name})
 
     var label_view = new LabelView({model:label});
-    $("#lables_space").append(label_view.render().el);
+    $("#rule_group_labels").append(label_view.render().el);
 
 
     },
@@ -74,7 +115,6 @@ $("#edit_rule_attr").show();
 
     addRule:function(){
         console.log("go to addRule");
-
         router.navigate("#new_rule");
           
     },
@@ -86,20 +126,8 @@ $("#edit_rule_attr").show();
         ; 
 
 
-        console.log(!this.editor)
 
-        if(!this.editor){
-
-        var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        lineNumbers: true,
-        matchBrackets: true,
-        mode: "text/x-groovy"
-        });
-          this.editor = editor
-        }
-      
-
-      
+        this.editor.setValue(this.rule_body.get("content"))
     },
 
     doSearch: function() {
@@ -111,15 +139,15 @@ $("#edit_rule_attr").show();
           $("#rule_table>tbody").remove();
           $("#rule_table").append(rulesView.render().el);
         })
+      this.rulesRecord = ruleList;
 
 
-
-  },
+      },
 });
 
 
 
-var app = new AppView;
+var app = new AppView();
 
     
 var AppRouter = Backbone.Router.extend({

@@ -12,39 +12,10 @@
 
 </head>
 <body id="rule_engine">
-
+<div>
 
 	<!-- edit body html -->
-	<div id="edit_rule_body" class="ui modal scrolling">
-		<i class="close icon"></i>
-		<div class="header">Edit Rule Body</div>
-		<div class="content">
-			<textarea id="code" name="code" rows="50" cols="120">
-//Pattern for groovy script
-def p = ~/.*\.groovy/
-new File( 'd:\\scripts' ).eachFileMatch(p) {f ->
-  // imports list
-  def imports = []
-  f.eachLine {
-    // condition to detect an import instruction
-    ln -> if ( ln =~ '^import .*' ) {
-      imports << "${ln - 'import '}"
-    }
-  }
-  // print thmen
-  if ( ! imports.empty ) {
-    println f
-    imports.each{ println "   $it" }
-  }
-}
-</textarea>
-
-		</div>
-		<div class="actions">
-			<div class="ui button">Cancel</div>
-			<div class="ui button">Save</div>
-		</div>
-	</div>
+	
 
 
 
@@ -55,16 +26,19 @@ new File( 'd:\\scripts' ).eachFileMatch(p) {f ->
 		<div class="ten wide middle column">
 
 			<div class="ui tabular filter menu">
+					
 				<a class="active item" data-tab="rule">Rule Maintain</a> 
-    <a  class="item" data-tab="new_rule">Create Rule</a> 
-    <a class="item"
+    
+    
+    <a id="event-maintain" class="item"
 					data-tab="event">Event Maintain</a>
+					<a  class="item" data-tab="new_rule">Add New Rule</a> 
 			</div>
 
 
 
-			<!-- event body -->
-			<div class="ui divided inbox selection list active tab"
+			<!-- event maintain -->
+			<div id="event_maintain" class="ui divided inbox selection list active tab"
 				data-tab="event">
 				<div class="ui small form segment">
 					<div class="four fields">
@@ -81,16 +55,31 @@ new File( 'd:\\scripts' ).eachFileMatch(p) {f ->
 							</div>
 						</div>
 
-
+						
 						<div class="field">
 							<label>Event name</label> <input placeholder="name" type="text">
 						</div>
 
 
 					</div>
-					<div class="ui blue small submit button">Search</div>
+					<div id="search_event" class="ui blue small submit button">Search</div>
 
 				</div>
+
+
+
+				<table id="event_table" class="ui table segment">
+					<thead>
+						<tr>
+							<th>Event Name</th>
+							<th>event Type</th>
+							<th>Business Unit</th>
+							<th>Product</th>
+							<th>Version</th>
+						</tr>
+					</thead>
+
+				</table>
 
 
 
@@ -98,6 +87,8 @@ new File( 'd:\\scripts' ).eachFileMatch(p) {f ->
 				<div class="ui vertically divided grid">
 					<div class="ui celled grid">
 						<div class="eight wide column">
+
+
 
 							<div class="zTreeDemoBackground left">
 								<ul id="treeDemo" class="ztree"></ul>
@@ -114,19 +105,44 @@ new File( 'd:\\scripts' ).eachFileMatch(p) {f ->
 							</div>
 
 
-
-							<label></label>
+      						 <div  id="search_type" class="ui selection dropdown">
+  	<div class="text">Select</div>
+  	<i class="dropdown icon"></i>
+  	<div class="menu">
+    	<div class="item" data-value="1">Rule</div>
+    	<div class="item" data-value="2">RuleGroup</div>
+    </div>
+	</div>
 							<div class="ui icon input">
-								<input type="text" placeholder="Search rule"> <i
-									class="search icon"></i>
+								<input id="search_rule_name" type="text" placeholder="Search rule or group"> <i
+									id="search_ruleOrGroup" class="search icon"></i>
 							</div>
 
 
 
-							<div class="ui blue small submit button">Add to Event</div>
+							
 						</div>
 					</div>
 				</div>
+
+<div id="event_label" class="ui two column grid">
+	<div class="column">
+  <div id="source_label" class="container">
+
+   
+</div>
+</div>
+<div class="column">
+  <div id="target_label" class="container">
+  <div></div>
+</div>
+<div id="AddEvent" class="ui blue small submit button">Add to Event</div>
+</div>
+
+
+</div>
+
+  
 			</div>
 
 
@@ -240,10 +256,8 @@ new File( 'd:\\scripts' ).eachFileMatch(p) {f ->
 
 						</div>
 
-
-
 						<div class="field">
-							<div class="ui blue submit button">Save</div>
+							<div id="save_rule" class="ui blue submit button">Save</div>
 						</div>
 					</div>
 
@@ -256,6 +270,19 @@ new File( 'd:\\scripts' ).eachFileMatch(p) {f ->
    <!-- rule - maintain  -->
 			<div id="rule_maintian" class="ui divided inbox selection list tab"
 				data-tab="rule">
+<div id="edit_rule_body" class="ui modal scrolling">
+		<i class="close icon"></i>
+		<div class="header">Edit Rule Body</div>
+		<div class="content">
+			<textarea id="rule_content" name="code" rows="20" cols="120">
+				</textarea>
+		</div>
+		<div class="actions">
+			<div class="ui button">Cancel</div>
+			<div id="save body"class="ui button">Save</div>
+		</div>
+	</div>
+				
 				<div class="ui small form segment">
 					<div class="four fields">
 
@@ -270,7 +297,6 @@ new File( 'd:\\scripts' ).eachFileMatch(p) {f ->
 					</div>
 
 				</div>
-
 
 
     <!-- rule table record -->
@@ -294,7 +320,7 @@ new File( 'd:\\scripts' ).eachFileMatch(p) {f ->
   <div class="row">
     <div class="twelve wide column" style="">
      <div class="ui ribbon label">description</div>
-       <textarea id="description" name="description" rows="5" cols="100"></textarea>
+       <textarea id="rule_description" name="description" rows="5" cols="100">Check CGL coverage premium</textarea>
     </div>
   </div>
   <div class="row">
@@ -335,7 +361,71 @@ new File( 'd:\\scripts' ).eachFileMatch(p) {f ->
        </div>
     </div>
   </div>
+  <div class="row">
+    <div class="four wide column">
+      <label>Rule level</label>
+       <div class="ui selection dropdown">
+        <input type="hidden" name="Rule level">
+        <div class="text">Coverage</div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+         <div class="item" data-value="0">Coverage</div>
+         <div class="item" data-value="1">Location</div>
+         <div class="item" data-value="2">Classification</div>
+         <div class="item" data-value="3">Policy</div>
+         <div class="item" data-value="4">Benifit</div>
+        </div>
+       </div>
+    </div>
+     <div class="four wide column">
+      <label>Rule Type</label>
+       <div class="ui selection dropdown">
+        <input type="hidden" name="Rule Type">
+        <div class="text">Coverage</div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+         <div class="item" data-value="0">Service</div>
+         <div class="item" data-value="1">UI</div>
+        </div>
+       </div>
+    </div>
+     <div class="four wide column">
+      <label>Rule Group</label>
+       <div class="ui selection dropdown">
+        <input type="hidden" name="Rule Group">
+        <div class="text">Coverage</div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+         <div class="item" data-value="0">Validation Policy</div>
+         <div class="item" data-value="1">Check Claim Data</div>
+        </div>
+       </div>
+    </div>
+  </div>
+ <div class="row">
+ 	<div class="six wide column">
+      <label>Transaction</label>
+       <div class="ui selection dropdown">
+        <input type="hidden" name="Rule Group">
+        <div class="text">Coverage</div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+         <div class="item" data-value="0">Rate</div>
+         <div class="item" data-value="1">Quote</div>
+         <div class="item" data-value="1">Bind</div>
+         <div class="item" data-value="1">Policy</div>
+        </div>
+       </div>
+    </div>
+<div class="six wide column">
+ 	 <div id="update_rule" class="ui primary button">update</div>
+ 	</div>
+ </div>
 </div>
+
+
+
+
 
 
 
@@ -378,9 +468,7 @@ new File( 'd:\\scripts' ).eachFileMatch(p) {f ->
 							<div id="lables_space" class="ui segment">
 								<div class="four fields">
 									<div class="field">
-										<div class="ui blue labels">
-											<a class="ui label"> Save Policy <i class="icon close"></i>
-											</a>
+										<div id="rule_group_labels" class="ui blue labels">
 										</div>
 									</div>
 								</div>
@@ -395,7 +483,12 @@ new File( 'd:\\scripts' ).eachFileMatch(p) {f ->
   </div>
 </div>
 </div>
+
+</div>
 </body>
+
+
+
 
 <link rel="stylesheet" type="text/css" href="/dsl/html/css/semantic.css">
 <link rel="stylesheet" href="/dsl/html/css/demo.css" type="text/css">
@@ -403,15 +496,27 @@ new File( 'd:\\scripts' ).eachFileMatch(p) {f ->
  type="text/css">
  <link rel="stylesheet" href="/dsl/html/css/codemirror.css">
 
+ <style>
+    .container {
+      border: 1px dashed #CCC;
+      position: relative;
+    }
 
+    .container > div {
+      position: absolute;
+      width: 100px
+    }
 
-
+    .container > .ss-placeholder-child {
+      background: transparent;
+      border: 1px dashed blue;
+    }
+  </style>
 
 <script src="/dsl/html/scripts/jquery.js"></script>
 <script src="/dsl/html/scripts/jquery.address.js"></script>
 <script src="/dsl/html/javascript/underscore.js"></script>
 <script src="/dsl/html/javascript/backbone.js"></script>
-
 <script type="text/template" id="rule-template">
         <p hidden><%- id %></p>
         <td><%- name %></td>
@@ -422,11 +527,27 @@ new File( 'd:\\scripts' ).eachFileMatch(p) {f ->
         <td><%- verison %></td>
      <td><%- status %></td>
   </script>
+
+<script type="text/template" id="event_label_template">
+        	 <%- name %> <p hidden><%- id %></p>
+</script>
+
+
+
+
+  <script type="text/template" id="event-template"> 
+  		<p hidden><%- id %></p>
+        <td><%- name %></td>
+        <td><%- eventType %></td>
+        <td><%- business_unit %></td>
+         <td><%- product%></td>
+        <td><%- verison %></td>
+  </script>
+
 <script type="text/template" id="label-template">
-            <a class="ui label">
-             <%- name %><i class="icon close"></i>
-            </a>
- </script>
+           
+             <%- name %><i id='<%- name %>' class="icon close"></i>
+           </script>
 
 
 
@@ -437,30 +558,27 @@ new File( 'd:\\scripts' ).eachFileMatch(p) {f ->
 <script src="/dsl/html/javascript/groovy.js"></script>
 <script src="/dsl/html/label.js"></script>
 <script src="/dsl/html/rules.js"></script>
+<script src="/dsl/html/event.js"></script>
+<script src="/dsl/html/rule_group.js"></script>
+<script src="/dsl/html/event_maintain.js"></script>
 <script src="/dsl/html/app_miantian.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="/dsl/html/javascript/jquery.shapeshift.js"></script>
 
 
-<script type="text/javascript">
-  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        lineNumbers: true,
-        matchBrackets: true,
-        mode: "text/x-groovy"
-        });
-  </script>
 
 <SCRIPT type="text/javascript">
 $(document)
   .ready(function() {
-
     $('.filter.menu .item')
-      .tab()
-    ;
+      .tab();
 
-    
-
+  
     $('.ui.dropdown')
-      .dropdown()
-    ;
+      .dropdown();
+
+	
+
 
   })
 ;
