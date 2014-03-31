@@ -10,11 +10,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.ebao.gs.framework.rule.maintain.service.IRuleGroupService;
 import com.ebao.gs.framework.rule.maintain.web.rule.bean.RuleGroup;
 
 @Controller
 public class RuleGourpResouceHandler {
+	
+	
+	private IRuleGroupService groupService;
 
+	
 	@RequestMapping(value = "ruleGourps", method = RequestMethod.GET)
 	@ResponseBody
 	public String searchRules(@RequestParam("name") String searchName) {
@@ -32,8 +37,6 @@ public class RuleGourpResouceHandler {
 		group2.setId(2L);
 		group1.setName("Save Policy");
 		group2.setName("Save Binder");
-		
-		
 		groupList.add(group1);
 		groupList.add(group2);
 		return JSON.toJSONString(groupList);

@@ -18,10 +18,16 @@ var AppView = Backbone.View.extend({
         'click #search_rule' : 'doSearch',
         'click #add_new_rule' :'addRule',
         'click #rule_edit' :   'editRule',
+        'click #save_body' :'saveRuleBody',
         'click #add_rule_group' :   'addToRuleGroup',
         'click #rule_table>tbody>tr' : 'selectRow',
         'click #update_rule' :'updateRule',
         'click #rule_group_labels>a>i' :'deleteGroup',
+        
+    },
+
+    saveRuleBody:function(){
+      console.log("saveRuleBody");
     },
 
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.ebao.gs.framework.rule.maintain.service.IRuleService;
 import com.ebao.gs.framework.rule.maintain.web.rule.bean.Rule;
 import com.ebao.gs.framework.rule.maintain.web.rule.bean.RuleContent;
 
@@ -19,13 +20,35 @@ import com.ebao.gs.framework.rule.maintain.web.rule.bean.RuleContent;
 @RequestMapping("/rule")
 public class RuleResourceHandler {
 
-	// @RequestMapping(method = RequestMethod.GET)
-	// @ResponseBody
-	// public String getRule() {
-	//
-	// System.out.println("!!!!!!!Test  ");
+	private IRuleService ruleService;
 
-	// }
+	@RequestMapping(value = "list", method = RequestMethod.GET)
+	@ResponseBody
+	public String searchRules(@RequestParam("name") String searchName) {
+
+		System.out.println(searchName);
+		// Search Index
+
+		// DAO
+
+		List<Rule> rulelist = new ArrayList<Rule>();
+		Rule rule = new Rule();
+		rule.setId(1L);
+		rule.setName("check limit");
+
+		rule.setRuleGroup("Save Policy");
+
+		Rule rule2 = new Rule();
+		rule2.setId(2L);
+		rule2.setName("check premium");
+
+		rule2.setRuleGroup("Save Policy");
+
+		rulelist.add(rule);
+		rulelist.add(rule2);
+		return JSON.toJSONString(rulelist);
+
+	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
