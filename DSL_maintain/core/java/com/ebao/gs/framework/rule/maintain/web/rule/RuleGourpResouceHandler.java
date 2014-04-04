@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.ebao.gs.framework.rule.maintain.service.IRuleGroupService;
-import com.ebao.gs.framework.rule.maintain.web.rule.bean.RuleGroup;
+import com.ebao.gs.framework.rule.maintain.service.bean.RuleGroup;
 
 @Controller
 public class RuleGourpResouceHandler {

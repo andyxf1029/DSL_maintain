@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.ebao.gs.framework.rule.maintain.service.IEventService;
-import com.ebao.gs.framework.rule.maintain.web.rule.bean.Event;
+import com.ebao.gs.framework.rule.maintain.service.bean.Event;
 
 @Controller
 public class EventResourceHandler {
