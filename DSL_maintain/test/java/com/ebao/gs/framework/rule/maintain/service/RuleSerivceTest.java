@@ -17,9 +17,7 @@ public class RuleSerivceTest {
 
 	@Test
 	public void testSearchRule() {
-
 		System.out.println(this.ruleService.searchRule("Test"));
-
 	}
 
 	@Test

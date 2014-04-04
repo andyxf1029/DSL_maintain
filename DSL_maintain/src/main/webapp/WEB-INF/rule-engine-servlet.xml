@@ -28,7 +28,9 @@
 		</property>
 	</bean>
 	<bean id="RuleResourceHandler"
-		class="com.ebao.gs.framework.rule.maintain.web.rule.RuleResourceHandler" />
+		class="com.ebao.gs.framework.rule.maintain.web.rule.RuleResourceHandler">
+		<property name="ruleService" ref="ruleService" />
+	</bean>
 	<bean id="RuleGourpResouceHandler"
 		class="com.ebao.gs.framework.rule.maintain.web.rule.RuleGourpResouceHandler" />
 	<bean id="EventResourceHandler"

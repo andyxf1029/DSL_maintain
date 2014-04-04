@@ -1,8 +1,40 @@
 package com.ebao.gs.framework.rule.maintain.service.bean;
 
+import java.util.List;
+
 public class Rule {
 
 	private String name;
+
+	private String rulePath;
+
+	private Long id;
+
+	private Integer ruleType;
+
+	private Integer ruleLevel;
+
+	private String ruleDescription;
+
+	private List<RuleGroup> groupList;
+
+	public List<RuleGroup> getGroupList() {
+		return groupList;
+	}
+
+	public void setGroupList(List<RuleGroup> groupList) {
+		this.groupList = groupList;
+	}
+
+	public List<Event> getEventList() {
+		return eventList;
+	}
+
+	public void setEventList(List<Event> eventList) {
+		this.eventList = eventList;
+	}
+
+	private List<Event> eventList;
 
 	public String getRulePath() {
 		return rulePath;
@@ -35,16 +67,6 @@ public class Rule {
 	public void setRuleDescription(String ruleDescription) {
 		this.ruleDescription = ruleDescription;
 	}
-
-	private String rulePath;
-
-	private Long id;
-
-	private Integer ruleType;
-
-	private Integer ruleLevel;
-
-	private String ruleDescription;
 
 	public Long getId() {
 		return id;

@@ -12,11 +12,18 @@ import org.slf4j.LoggerFactory;
 import com.ebao.gs.framework.rule.maintain.service.IRuleService;
 import com.ebao.gs.framework.rule.maintain.service.bean.Rule;
 import com.ebao.gs.framework.rule.maintain.service.bean.RuleContent;
+import com.ebao.gs.framework.rule.maintain.service.bean.RuleGroup;
+import com.ebao.gs.framework.rule.maintain.service.dao.IRelationshipDAO;
 import com.ebao.gs.framework.rule.maintain.service.dao.IRuleDAO;
+import com.ebao.gs.framework.rule.maintain.service.dao.IRuleGroupDAO;
 
 public class RuleServiceImpl implements IRuleService {
 
 	private IRuleDAO ruleDao;
+
+	private IRelationshipDAO relationshipDao;
+
+	private IRuleGroupDAO groupDao;
 
 	public void setRuleDao(IRuleDAO ruleDao) {
 		this.ruleDao = ruleDao;
@@ -29,6 +36,28 @@ public class RuleServiceImpl implements IRuleService {
 		List<Rule> ruleList = ruleDao.searchRule(searchName);
 		logger.debug("search Rule result: " + ruleList);
 		return ruleList;
+	}
+
+	public Rule findRelatedGroupAndEvent(Rule rule) {
+		List<Long> groupIdList = relationshipDao
+				.findGourpByRuleId(rule.getId());
+		List<RuleGroup> groupList = groupDao.findGroupList(groupIdList);
+		rule.setGroupList(groupList);
+		List<Long> eventGroupList = this.findEventByGourpIdList(groupIdList);
+
+		// TODO call event Service ;
+		List<Long> eventIdList = this.relationshipDao.findEventByRuleId(rule
+				.getId());
+
+		// TODO call event Service ;
+
+		return null;
+
+	}
+
+	private List<Long> findEventByGourpIdList(List<Long> groupIdList) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public Rule findRuleById(long id) {
@@ -53,7 +82,7 @@ public class RuleServiceImpl implements IRuleService {
 		return content;
 	}
 
-	public Boolean saveRuleBody(RuleContent content) throws IOException {
+	public void saveRuleBody(RuleContent content) throws IOException {
 		Rule rule = this.findRuleById(content.getId());
 		if (StringUtils.isEmpty(rule.getRulePath())) {
 			logger.error("loadRuleBody ,path is empty");
@@ -64,7 +93,6 @@ public class RuleServiceImpl implements IRuleService {
 					content.getContent());
 		}
 		// TODO Auto-generated method stub
-		return false;
 	}
 
 	public Long addOrUpdate(Rule rule) {

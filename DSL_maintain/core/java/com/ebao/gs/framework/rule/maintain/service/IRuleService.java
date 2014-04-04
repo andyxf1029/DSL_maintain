@@ -14,7 +14,7 @@ public interface IRuleService {
 
 	RuleContent loadRuleBody(long id) throws IOException;
 
-	Boolean saveRuleBody(RuleContent content) throws IOException;
+	void saveRuleBody(RuleContent content) throws IOException;
 
 	Long addOrUpdate(Rule rule);
 

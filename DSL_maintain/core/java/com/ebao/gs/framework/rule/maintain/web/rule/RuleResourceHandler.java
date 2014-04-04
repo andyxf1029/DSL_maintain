@@ -22,6 +22,10 @@ public class RuleResourceHandler {
 
 	private IRuleService ruleService;
 
+	public void setRuleService(IRuleService ruleService) {
+		this.ruleService = ruleService;
+	}
+
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	@ResponseBody
 	public String searchRules(@RequestParam("name") String searchName) {
@@ -48,9 +52,9 @@ public class RuleResourceHandler {
 
 	@RequestMapping(value = "body", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean saveRuleBody(String content) throws IOException {
+	public void saveRuleBody(String content) throws IOException {
 		RuleContent ruleContent = JSON.parseObject(content, RuleContent.class);
-		return this.ruleService.saveRuleBody(ruleContent);
+		this.ruleService.saveRuleBody(ruleContent);
 
 	}
 

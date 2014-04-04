@@ -7,6 +7,16 @@ public class RuleGroup {
 
 	private long id;
 
+	private List<Event> evnetList;
+
+	public List<Event> getEvnetList() {
+		return evnetList;
+	}
+
+	public void setEvnetList(List<Event> evnetList) {
+		this.evnetList = evnetList;
+	}
+
 	public long getId() {
 		return id;
 	}

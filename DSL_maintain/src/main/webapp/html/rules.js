@@ -18,7 +18,7 @@ var Rule  = Backbone.Model.extend({
 
  var RuleList = Backbone.Collection.extend({
 
-  url: "restful/rulelist",
+  url: "restful/rule/list",
 
    model: Rule,
   
