@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap     
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"     
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="rule">
+	<typeAlias alias="Rule"
+		type="com.ebao.gs.framework.rule.maintain.service.bean.Rule" />
+	<resultMap class="Rule" id="BaseResultMap">
+		<result property="id" column="rule_id" />
+		<result property="ruleType" column="RULE_TYPE" />
+		<result property="ruleLevel" column="RULE_LEVEL" />
+		<result property="ruleDescription" column="RULE_DESCRIPTION" />
+		<result property="name" column="RULE_NAME" />
+		<result property="rulePath" column="RULE_PATH" />
+	</resultMap>
+
+
+
+	<sql id="ruleConditions">
+		<isNotEmpty property="id" prepend="AND">
+			rule_id = #id#
+		</isNotEmpty>
+
+		<isNotEmpty property="ruleType" prepend="AND">
+			rule_type =
+			#ruleType#
+		</isNotEmpty>
+
+		<isNotEmpty property="ruleLevel" prepend="AND">
+			rule_level =
+			#ruleLevel#
+		</isNotEmpty>
+
+		<isNotEmpty property="ruleDescription" prepend="AND">
+			RULE_DESCRIPTION = #ruleDescription#
+		</isNotEmpty>
+
+		<isNotEmpty property="name" prepend="AND">
+			RULE_NAME = #name#
+		</isNotEmpty>
+
+	</sql>
+
+
+	<select id="queryRules" parameterClass="java.util.Map"
+		resultMap="BaseResultMap">
+		select * from T_GS_FRAMEWORK_RULE where 1=1
+		<include refid="ruleConditions" />
+	</select>
+
+	<sql id="Base_Column_List">
+		RULE_ID, RULE_TYPE, RULE_LEVEL, RULE_DESCRIPTION,
+		RULE_NAME,
+		RULE_PATH
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterClass="java.lang.Long">
+
+		select
+		<include refid="Base_Column_List" />
+		from T_GS_FRAMEWORK_RULE
+		where RULE_ID = #id#
+	</select>
+
+
+
+	<select id="rule_count" resultClass="int">
+		SELECT COUNT(*) AS NUM FROM
+		(
+		select * from
+		T_GS_FRAMEWORK_RULE where 1=1
+		)
+	</select>
+
+
+	<insert id="insertRule" parameterClass="Rule">
+		<selectKey resultClass="long" keyProperty="id">
+			select
+			T_SEQ_RULE.Nextval from dual
+		</selectKey>
+
+		insert into T_GS_FRAMEWORK_RULE (RULE_ID, RULE_TYPE,
+		RULE_LEVEL,
+		RULE_DESCRIPTION, RULE_NAME,
+		RULE_PATH)
+		values (#id#, #ruleType#,
+		#ruleLevel#, #ruleDescription#, #name#,
+		#rulePath#)
+	</insert>
+
+
+	<update id="updateRule" parameterClass="Rule">
+		UPDATE T_GS_FRAMEWORK_RULE
+		<dynamic prepend="SET">
+			<isNotEmpty prepend="," property="ruleType">
+				RULE_TYPE = #ruleType#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="ruleLevel">
+				RULE_LEVEL = #ruleLevel#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="ruleDescription">
+				RULE_DESCRIPTION =
+				#ruleDescription#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="name">
+				RULE_NAME = #name#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="rulePath">
+				RULE_PATH = #rulePath#
+			</isNotEmpty>
+
+		</dynamic>
+		WHERE rule_id = #id#
+
+	</update>
+
+	<delete id="deleteRule" parameterClass="java.lang.Long">
+		DELETE FROM
+		T_INT_SCHEDULE_JOB WHERE 1=1
+		AND rule_id=#id#
+	</delete>
+
+
+
+</sqlMap>

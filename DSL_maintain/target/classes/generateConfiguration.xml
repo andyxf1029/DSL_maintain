@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<context id="context1">
+		<jdbcConnection driverClass="org.h2.Driver"
+			connectionURL="jdbc:h2:~/test" userId="sa" password="" />
+		<javaModelGenerator
+			targetPackage="com.ebao.gs.framework.rule.maintain.web.rule.bean"
+			targetProject="core/java" />
+		<sqlMapGenerator
+			targetPackage="com.ebao.gs.framework.rule.maintain.web.rule.bean.mapper"
+			targetProject="core/java"></sqlMapGenerator>
+		<javaClientGenerator
+			targetPackage="com.ebao.gs.framework.rule.maintain.web.rule.client"
+			targetProject="core/java" type="XMLMAPPER" />
+		<table schema="" tableName="T_GS_FRAMEWORK_RULE"></table>
+
+	</context>
+</generatorConfiguration>
