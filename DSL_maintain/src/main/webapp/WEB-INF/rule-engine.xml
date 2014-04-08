@@ -45,15 +45,20 @@
 	</bean>
 
 
-	<bean id="RuleDAO"
+	<bean id="ruleDAO"
 		class="com.ebao.gs.framework.rule.maintain.service.dao.impl.RuleDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="relationshipDAO"
+		class="com.ebao.gs.framework.rule.maintain.service.dao.impl.RelationshipDAOImpl">
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
 
 
 	<bean id="ruleService"
 		class="com.ebao.gs.framework.rule.maintain.service.impl.RuleServiceImpl">
-		<property name="ruleDao" ref="RuleDAO" />
+		<property name="ruleDao" ref="ruleDAO" />
 	</bean>
 
 

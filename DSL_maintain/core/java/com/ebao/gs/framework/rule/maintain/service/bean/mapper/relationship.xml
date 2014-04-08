@@ -6,7 +6,7 @@
 <sqlMap namespace="rule">
 
 
-	<select id="queryRelationshipWithGroup" parameterClass="java.lang.Long"
+	<select id="findGourpByRuleId" parameterClass="java.lang.Long"
 		resultClass="java.lang.Long">
 		select rule_group_id from t_gs_relation_rulegroup_rule
 		where rule_id
@@ -14,10 +14,27 @@
 	</select>
 
 
-	<select id="queryRelationshipWithEvent" parameterClass="java.lang.Long"
+	<select id="findEventByRuleId" parameterClass="java.lang.Long"
 		resultClass="java.lang.Long">
 		select event_id from T_GS_RELATION_RULE_EVENT where
 		rule_id
+		=#id#
+	</select>
+
+
+
+	<select id="findRuleGroupByEventId" parameterClass="java.lang.Long"
+		resultClass="java.lang.Long">
+		select rule_group_id from T_GS_RELATION_RULEGROUP_EVENT
+		where
+		event_id
+		=#id#
+	</select>
+
+	<select id="findRuleByEventId" parameterClass="java.lang.Long"
+		resultClass="java.lang.Long">
+		select rule_id from T_GS_RELATION_RULE_EVENT where
+		event_id
 		=#id#
 	</select>
 
