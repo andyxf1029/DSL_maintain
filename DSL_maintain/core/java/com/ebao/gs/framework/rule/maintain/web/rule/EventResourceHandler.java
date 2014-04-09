@@ -1,7 +1,8 @@
 package com.ebao.gs.framework.rule.maintain.web.rule;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import com.ebao.gs.framework.rule.maintain.service.IEventService;
 import com.ebao.gs.framework.rule.maintain.service.bean.Event;
 
 @Controller
+@RequestMapping("/event")
 public class EventResourceHandler {
 
 	private IEventService eventService;
@@ -21,38 +23,29 @@ public class EventResourceHandler {
 	public void setEventService(IEventService eventService) {
 		this.eventService = eventService;
 	}
-	
-	
 
-	@RequestMapping(value = "/event", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	public void assignRuleToEvent(@RequestParam("id") String id,
-			@RequestParam("isGroup") String isGroup) {
-		if (isGroup.equals("true")) {
-			// update
-		}
-
+	public void assignToEvent(Event event) {
+		eventService.assignGourpToEvent(event, event.getGroupList());
+		eventService.assignRuleToEvent(event, event.getRuleList());
 	}
-	
-	@RequestMapping(value="/events",method = RequestMethod.GET)
+
+	@RequestMapping(value = "list", method = RequestMethod.GET)
 	@ResponseBody
-	public String searchEvents(@RequestParam("name") String searchName) {
-		
-		
-		
-		
+	public String searchEvents(@RequestParam("name") String searchName,
+			@RequestParam("type") String eventType) {
 
-		List<Event> eventList = new ArrayList<Event>();
-
-		Event event = new Event();
-		
-		event.setId(3);
-
-		eventList.add(event);
-
-		event.setName("Save Policy");
-
+		System.out.println("test-------");
+		Map<String, Object> requestMap = new HashMap<String, Object>();
+		List<Event> eventList = eventService.searchEventByCondition(requestMap);
 		return JSON.toJSONString(eventList);
 	}
 
+	@RequestMapping(value = "relationship", method = RequestMethod.POST)
+	public Event loadEventRelationship(Event event) {
+
+		return eventService.loadEventRelationship(event);
+
+	}
 }

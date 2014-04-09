@@ -3,7 +3,7 @@
     PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"     
     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
-<sqlMap namespace="rule">
+<sqlMap namespace="relationship">
 
 
 	<select id="findGourpByRuleId" parameterClass="java.lang.Long"
@@ -37,5 +37,17 @@
 		event_id
 		=#id#
 	</select>
+
+
+	<insert id="insertLinkForRuleAndGroup" parameterClass="java.util.Map">
+		<selectKey resultClass="long" keyProperty="id">
+			select
+			S_RULE_GROUP_PK.Nextval from dual
+		</selectKey>
+		insert into T_GS_RELATION_RULEGROUP_RULE (ID, RULE_ID,
+		RULE_GROUP_ID)
+		values (#id#, #rule_id#,
+		#group_id#)
+	</insert>
 
 </sqlMap>

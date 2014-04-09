@@ -36,7 +36,6 @@ public class RuleDAOImpl extends SqlMapClientDaoSupport implements IRuleDAO {
 	}
 
 	public Object deleteRule(long id) {
-		// TODO Auto-generated method stub
 		return this.getSqlMapClientTemplate().delete("deleteRule", id);
 	}
 

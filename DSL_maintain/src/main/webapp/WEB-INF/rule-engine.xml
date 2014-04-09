@@ -60,6 +60,10 @@
 		class="com.ebao.gs.framework.rule.maintain.service.impl.RuleServiceImpl">
 		<property name="ruleDao" ref="ruleDAO" />
 	</bean>
+	
+	<bean id="eventService"
+		class="com.ebao.gs.framework.rule.maintain.service.impl.EventServiceImpl">
+	</bean>
 
 
 	<bean id="txManager"

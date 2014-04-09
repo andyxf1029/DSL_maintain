@@ -5,15 +5,17 @@ import java.util.List;
 
 public class Event {
 
-	private long id;
+	private long driverId;
 
-	public long getId() {
-		return id;
-	}
+	private long fieldId;
 
-	public void setId(long id) {
-		this.id = id;
-	}
+	private long triggerId;
+
+	private String fieldLabel;
+
+	private String fieldLevel;
+
+	private String code;
 
 	private String name;
 
@@ -43,6 +45,54 @@ public class Event {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public long getDriverId() {
+		return driverId;
+	}
+
+	public void setDriverId(long driverId) {
+		this.driverId = driverId;
+	}
+
+	public long getFieldId() {
+		return fieldId;
+	}
+
+	public void setFieldId(long fieldId) {
+		this.fieldId = fieldId;
+	}
+
+	public long getTriggerId() {
+		return triggerId;
+	}
+
+	public void setTriggerId(long triggerId) {
+		this.triggerId = triggerId;
+	}
+
+	public String getFieldLabel() {
+		return fieldLabel;
+	}
+
+	public void setFieldLabel(String fieldLabel) {
+		this.fieldLabel = fieldLabel;
+	}
+
+	public String getFieldLevel() {
+		return fieldLevel;
+	}
+
+	public void setFieldLevel(String fieldLevel) {
+		this.fieldLevel = fieldLevel;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 }

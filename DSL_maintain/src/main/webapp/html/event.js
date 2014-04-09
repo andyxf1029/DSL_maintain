@@ -17,7 +17,7 @@ var Event = Backbone.Model.extend({
 
 var EventList = Backbone.Collection.extend({
 
-  url: "http://localhost:8080/dsl/restful/eventList",
+  url: "restful/event/list",
 
    model: Event,
   

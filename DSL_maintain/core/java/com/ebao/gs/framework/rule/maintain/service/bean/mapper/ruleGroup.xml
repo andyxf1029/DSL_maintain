@@ -1,1 +1,77 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap     
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"     
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="group">
+	<typeAlias alias="RuleGroup"
+		type="com.ebao.gs.framework.rule.maintain.service.bean.RuleGroup" />
+	<resultMap class="RuleGroup" id="BaseResultMap">
+		<result property="id" column="RULE_GROUP_ID" />
+		<result property="name" column="GROUP_NAME" />
+	</resultMap>
+
+
+
+	<sql id="groupConditions">
+		<isNotEmpty property="id" prepend="AND">
+			RULE_GROUP_ID = #id#
+		</isNotEmpty>
+
+		<isNotEmpty property="name" prepend="AND">
+			GROUP_NAME =
+			#name#
+		</isNotEmpty>
+
+
+	</sql>
+
+
+	<select id="queryRules" parameterClass="java.util.Map"
+		resultMap="BaseResultMap">
+		select * from T_GS_FRAMEWORK_RULE_GROUP where 1=1
+		<include refid="groupConditions" />
+	</select>
+
+	<sql id="Base_Column_List">
+		RULE_GROUP_ID, GROUP_NAME
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterClass="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from T_GS_FRAMEWORK_RULE_GROUP
+		where RULE_GROUP_ID = #id#
+	</select>
+
+
+
+	<select id="rule_count" resultClass="int">
+		SELECT COUNT(*) AS NUM FROM
+		(
+		select * from
+		T_GS_FRAMEWORK_RULE_GROUP where 1=1
+		)
+	</select>
+
+
+	<insert id="insertRuleGroup" parameterClass="RuleGroup">
+		<selectKey resultClass="long" keyProperty="id">
+			select
+			S_GROUP_PK.Nextval from dual
+		</selectKey>
+		insert into T_GS_FRAMEWORK_RULE_GROUP (RULE_GROUP_ID, GROUP_NAME)
+		values (#id#, #name#)
+	</insert>
+
+
+
+	<delete id="deleteRuleGroup" parameterClass="java.lang.Long">
+		DELETE FROM
+		T_GS_FRAMEWORK_RULE_GROUP WHERE 1=1
+		AND RULE_GROUP_ID=#id#
+	</delete>
+
+
+</sqlMap>

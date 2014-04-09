@@ -43,7 +43,8 @@ public class RuleServiceImpl implements IRuleService {
 				.findGourpByRuleId(rule.getId());
 		List<RuleGroup> groupList = groupDao.findGroupList(groupIdList);
 		rule.setGroupList(groupList);
-		List<Long> eventGroupList = this.findEventByGourpIdList(groupIdList);
+		List<Long> eventGroupList = relationshipDao.findEventByGourpIdList(groupIdList);
+		
 
 		// TODO call event Service ;
 		List<Long> eventIdList = this.relationshipDao.findEventByRuleId(rule
@@ -55,10 +56,6 @@ public class RuleServiceImpl implements IRuleService {
 
 	}
 
-	private List<Long> findEventByGourpIdList(List<Long> groupIdList) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public Rule findRuleById(long id) {
 		logger.debug("findRuleById :" + id);
@@ -109,4 +106,14 @@ public class RuleServiceImpl implements IRuleService {
 		ruleDao.deleteRule(id);
 	}
 
+	public void attachToRuleGroup(String groupName, long ruleId) {
+		RuleGroup group = groupDao.searchGroupByName(groupName);
+		if (group == null) {
+			group = new RuleGroup();
+			group.setName(groupName);
+			group = groupDao.insertGroup(group);
+		}
+
+		this.relationshipDao.insertRuleAndGroupLink(ruleId, group.getId());
+	}
 }

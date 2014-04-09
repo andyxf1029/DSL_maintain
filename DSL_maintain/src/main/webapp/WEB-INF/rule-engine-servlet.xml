@@ -34,5 +34,7 @@
 	<bean id="RuleGourpResouceHandler"
 		class="com.ebao.gs.framework.rule.maintain.web.rule.RuleGourpResouceHandler" />
 	<bean id="EventResourceHandler"
-		class="com.ebao.gs.framework.rule.maintain.web.rule.EventResourceHandler" />
+		class="com.ebao.gs.framework.rule.maintain.web.rule.EventResourceHandler" >
+		<property name="eventService" ref="eventService" />
+		</bean>
 </beans>

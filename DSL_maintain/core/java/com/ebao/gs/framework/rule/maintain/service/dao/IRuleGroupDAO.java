@@ -8,4 +8,8 @@ public interface IRuleGroupDAO {
 
 	List<RuleGroup> findGroupList(List<Long> groupList);
 
+	RuleGroup searchGroupByName(String groupName);
+
+	RuleGroup insertGroup(RuleGroup group);
+
 }

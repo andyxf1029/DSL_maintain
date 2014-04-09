@@ -78,7 +78,7 @@
 	<insert id="insertRule" parameterClass="Rule">
 		<selectKey resultClass="long" keyProperty="id">
 			select
-			T_SEQ_RULE.Nextval from dual
+			S_RULE_PK.Nextval from dual
 		</selectKey>
 
 		insert into T_GS_FRAMEWORK_RULE (RULE_ID, RULE_TYPE,
@@ -118,7 +118,7 @@
 
 	<delete id="deleteRule" parameterClass="java.lang.Long">
 		DELETE FROM
-		T_INT_SCHEDULE_JOB WHERE 1=1
+		T_GS_FRAMEWORK_RULE WHERE 1=1
 		AND rule_id=#id#
 	</delete>
 

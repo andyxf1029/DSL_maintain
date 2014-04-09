@@ -155,7 +155,7 @@ var EventMaintainView = Backbone.View.extend({
     var  eventsList = new EventList;
 
 
-	$.when(eventsList.fetch({data:{name:"input"}})).then(function(){
+	$.when(eventsList.fetch({data:{name:"input",type:"type"}})).then(function(){
          var eventsView = new EventListView({collection:eventsList});
          $("#event_table>tbody").remove();
           $("#event_table").append(eventsView.render().el);
