@@ -39,23 +39,18 @@ public class RuleServiceImpl implements IRuleService {
 	}
 
 	public Rule findRelatedGroupAndEvent(Rule rule) {
-		List<Long> groupIdList = relationshipDao
-				.findGourpByRuleId(rule.getId());
-		List<RuleGroup> groupList = groupDao.findGroupList(groupIdList);
+		List<RuleGroup> groupList = groupDao.findGourpsByRuleId(rule.getId());
 		rule.setGroupList(groupList);
-		List<Long> eventGroupList = relationshipDao.findEventByGourpIdList(groupIdList);
-		
 
 		// TODO call event Service ;
-		List<Long> eventIdList = this.relationshipDao.findEventByRuleId(rule
-				.getId());
+		// List<Long> eventIdList = this.relationshipDao.findEventByRuleId(rule
+		// .getId());
 
 		// TODO call event Service ;
 
 		return rule;
 
 	}
-
 
 	public Rule findRuleById(long id) {
 		logger.debug("findRuleById :" + id);

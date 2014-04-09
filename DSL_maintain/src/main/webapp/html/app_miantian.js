@@ -64,17 +64,20 @@ var AppView = Backbone.View.extend({
 
       var selectedRule = this.rulesRecord.get(rule_id);
 
-      var zNodes2 =[
-  { name:selectedRule.get("name"), open:true,
+
+      var ruleContent  = new Rule({id:rule_id})
+       
+
+      $.when(ruleContent.fetch()).then(function(){
+var zNodes2 =[
+  { name:ruleContent.get("name"), open:true,
     children: [
     { name:"Save Policy",
     children: [
     { name:"Before save"},
     { name:"Finalize Quote"},
     ]},
-        ]},
-
-];
+        ]},];
 
 $.fn.zTree.init($("#treeDemo2"), { }, zNodes2);
 
@@ -85,7 +88,17 @@ $("#edit_rule_attr").show();
 
     var rule_description = $("#rule_description")
     rule_description.empty()
-    rule_description.append(selectedRule.get("description"))
+    rule_description.append(ruleContent.get("description"))
+          
+
+        }
+      )
+
+   
+
+
+
+      
 
 
     var rule_body = new RuleBody({id:rule_id});

@@ -6,12 +6,7 @@
 <sqlMap namespace="relationship">
 
 
-	<select id="findGourpByRuleId" parameterClass="java.lang.Long"
-		resultClass="java.lang.Long">
-		select rule_group_id from t_gs_relation_rulegroup_rule
-		where rule_id
-		=#id#
-	</select>
+	
 
 
 	<select id="findEventByRuleId" parameterClass="java.lang.Long"

@@ -34,9 +34,9 @@ public class RuleResourceHandler {
 
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public String findRuleById(@RequestParam("id") String id) {
+	public String findRuleById(@PathVariable String id) {
 		return JSON
 				.toJSONString(this.ruleService.findRuleById(Long.valueOf(id)));
 

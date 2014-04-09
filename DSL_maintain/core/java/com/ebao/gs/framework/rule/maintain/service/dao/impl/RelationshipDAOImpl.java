@@ -14,7 +14,7 @@ import com.ebao.gs.framework.rule.maintain.service.dao.IRelationshipDAO;
 public class RelationshipDAOImpl extends SqlMapClientDaoSupport implements
 		IRelationshipDAO {
 
-	public List<Long> findGourpByRuleId(long id) {
+	public List<RuleGroup> findGourpByRuleId(long id) {
 		return this.getSqlMapClientTemplate().queryForList("findGourpByRuleId",
 				id);
 	}

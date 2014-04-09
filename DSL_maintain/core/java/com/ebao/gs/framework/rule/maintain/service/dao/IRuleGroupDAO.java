@@ -12,4 +12,6 @@ public interface IRuleGroupDAO {
 
 	RuleGroup insertGroup(RuleGroup group);
 
+	List<RuleGroup> findGourpsByRuleId(long id);
+
 }

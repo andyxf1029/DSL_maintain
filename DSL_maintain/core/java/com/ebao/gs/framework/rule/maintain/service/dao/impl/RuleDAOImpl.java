@@ -39,14 +39,4 @@ public class RuleDAOImpl extends SqlMapClientDaoSupport implements IRuleDAO {
 		return this.getSqlMapClientTemplate().delete("deleteRule", id);
 	}
 
-	public List<Long> findRelatedGroup(long id) {
-		return this.getSqlMapClientTemplate().queryForList(
-				"queryRelationshipWithGroup", id);
-	}
-
-	public List<Long> findRelatedEvent(long id) {
-		return this.getSqlMapClientTemplate().queryForList(
-				"queryRelationshipWithEvent", id);
-
-	}
 }

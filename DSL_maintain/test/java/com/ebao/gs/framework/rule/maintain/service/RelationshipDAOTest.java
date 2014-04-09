@@ -17,7 +17,6 @@ public class RelationshipDAOTest {
 
 	@Test
 	public void test() {
-		System.out.println(relationshipDAO.findGourpByRuleId(2L));
 	}
 
 }

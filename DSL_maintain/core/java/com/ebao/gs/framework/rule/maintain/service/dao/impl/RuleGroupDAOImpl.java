@@ -32,4 +32,9 @@ public class RuleGroupDAOImpl extends SqlMapClientDaoSupport implements
 		return group;
 	}
 
+	public List<RuleGroup> findGourpsByRuleId(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

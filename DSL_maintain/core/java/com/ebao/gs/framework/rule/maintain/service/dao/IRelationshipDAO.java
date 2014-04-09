@@ -8,9 +8,9 @@ import com.ebao.gs.framework.rule.maintain.service.bean.RuleGroup;
 
 public interface IRelationshipDAO {
 
-	List<Long> findGourpByRuleId(long id);
+	
 
-	List<Long> findEventByRuleId(Long id);
+//	List<Long> findEventByRuleId(Long id);
 
 	void insertRuleAndGroupLink(long ruleId, long id);
 

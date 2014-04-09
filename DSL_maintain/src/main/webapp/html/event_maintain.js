@@ -42,7 +42,7 @@ var EventMaintainView = Backbone.View.extend({
     addEvent:function(){
 
 
-
+        
 
 
     	if(!this.currentEvent){

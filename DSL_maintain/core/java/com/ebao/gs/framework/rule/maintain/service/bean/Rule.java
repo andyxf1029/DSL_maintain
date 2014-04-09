@@ -18,6 +18,8 @@ public class Rule {
 
 	private List<RuleGroup> groupList;
 
+	private List<Event> eventList;
+
 	public List<RuleGroup> getGroupList() {
 		return groupList;
 	}
@@ -33,8 +35,6 @@ public class Rule {
 	public void setEventList(List<Event> eventList) {
 		this.eventList = eventList;
 	}
-
-	private List<Event> eventList;
 
 	public String getRulePath() {
 		return rulePath;

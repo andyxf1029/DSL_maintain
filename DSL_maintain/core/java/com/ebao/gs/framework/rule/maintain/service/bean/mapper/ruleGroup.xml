@@ -6,7 +6,7 @@
 <sqlMap namespace="group">
 	<typeAlias alias="RuleGroup"
 		type="com.ebao.gs.framework.rule.maintain.service.bean.RuleGroup" />
-	<resultMap class="RuleGroup" id="BaseResultMap">
+	<resultMap class="RuleGroup" id="RuleGroupMap">
 		<result property="id" column="RULE_GROUP_ID" />
 		<result property="name" column="GROUP_NAME" />
 	</resultMap>
@@ -28,7 +28,7 @@
 
 
 	<select id="queryRules" parameterClass="java.util.Map"
-		resultMap="BaseResultMap">
+		resultMap="RuleGroupMap">
 		select * from T_GS_FRAMEWORK_RULE_GROUP where 1=1
 		<include refid="groupConditions" />
 	</select>
@@ -37,7 +37,7 @@
 		RULE_GROUP_ID, GROUP_NAME
 	</sql>
 
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+	<select id="selectByPrimaryKey" resultMap="RuleGroupMap"
 		parameterClass="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
@@ -72,6 +72,14 @@
 		T_GS_FRAMEWORK_RULE_GROUP WHERE 1=1
 		AND RULE_GROUP_ID=#id#
 	</delete>
+	
+	
+	<select id="findGourpByRuleId" parameterClass="java.lang.Long"
+		resultClass="RuleGroupMap">
+		select g.RULE_GROUP_ID,g.GROUP_NAME from  T_GS_FRAMEWORK_RULE_GROUP g ,t_gs_relation_rulegroup_rule r
+		where g.RULE_GROUP_ID=r.RULE_GROUP_ID and rule_id
+		=#id#
+	</select>
 
 
 </sqlMap>

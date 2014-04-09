@@ -17,14 +17,19 @@ public class RuleSerivceTest {
 
 	@Test
 	public void testSearchRule() {
-		System.out.println(this.ruleService.searchRule("Test"));
+		System.out.println(this.ruleService.searchRule("Check"));
+	}
+
+	@Test
+	public void testSearchRuleById() {
+		System.out.println(this.ruleService.findRuleById(1L));
 	}
 
 	@Test
 	public void testAddRule() {
 		Rule rule = new Rule();
-		rule.setId(3L);
-		rule.setName("GIGI");
+		// rule.setId(3L);
+		rule.setName("Check Limit ");
 		ruleService.addOrUpdate(rule);
 
 	}

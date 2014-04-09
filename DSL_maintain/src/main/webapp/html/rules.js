@@ -1,5 +1,5 @@
 var Rule  = Backbone.Model.extend({
-        urlRoot: "dsl/rule",
+        urlRoot: "restful/rule",
         initialize: function(){
            
         },
