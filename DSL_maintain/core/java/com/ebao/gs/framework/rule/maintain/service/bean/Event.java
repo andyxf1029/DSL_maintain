@@ -17,20 +17,31 @@ public class Event {
 
 	private String code;
 
+	public String getEventType() {
+		return eventType;
+	}
+
+	public void setEventType(String eventType) {
+		this.eventType = eventType;
+	}
+
 	private String name;
+
+	private String eventType;
 
 	private List<Rule> ruleList = new ArrayList<Rule>();
 
-	private List<RuleGroup> groupList = new ArrayList<RuleGroup>();
+	//
+	// private List<RuleGroup> groupList = new ArrayList<RuleGroup>();
 
-	public List<RuleGroup> getGroupList() {
-		return groupList;
-	}
-
-	public void setGroupList(List<RuleGroup> groupList) {
-		this.groupList = groupList;
-	}
-
+	// public List<RuleGroup> getGroupList() {
+	// return groupList;
+	// }
+	//
+	// public void setGroupList(List<RuleGroup> groupList) {
+	// this.groupList = groupList;
+	// }
+	//
 	public List<Rule> getRuleList() {
 		return ruleList;
 	}
@@ -95,4 +106,11 @@ public class Event {
 		this.code = code;
 	}
 
+	@Override
+	public String toString() {
+		return "Event [driverId=" + driverId + ", fieldId=" + fieldId
+				+ ", triggerId=" + triggerId + ", fieldLabel=" + fieldLabel
+				+ ", fieldLevel=" + fieldLevel + ", code=" + code + ", name="
+				+ name + ", eventType=" + eventType + "]";
+	}
 }

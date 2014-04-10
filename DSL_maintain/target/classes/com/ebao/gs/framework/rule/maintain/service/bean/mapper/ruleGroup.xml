@@ -74,7 +74,7 @@
 	</delete>
 	
 	
-	<select id="findGourpByRuleId" parameterClass="java.lang.Long"
+	<select id="findGourpsByRuleId" parameterClass="java.lang.Long"
 		resultClass="RuleGroupMap">
 		select g.RULE_GROUP_ID,g.GROUP_NAME from  T_GS_FRAMEWORK_RULE_GROUP g ,t_gs_relation_rulegroup_rule r
 		where g.RULE_GROUP_ID=r.RULE_GROUP_ID and rule_id

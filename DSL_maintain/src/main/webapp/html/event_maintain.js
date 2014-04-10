@@ -40,22 +40,17 @@ var EventMaintainView = Backbone.View.extend({
     },
 
     addEvent:function(){
+      var p = $('#target_label >div>p')
+      var type = p.attr("type");
+      var id = p.text();
+      if(type='rule'){
+        var rule = new Rule({id:id});
+
+        this.currentEvent.set("ruleList",[rule])
+      }
 
 
-        
-
-
-    	if(!this.currentEvent){
-    		console.log("currentEvent don't exist")
-    	}else{
-
-    		
-
-    	}
-
-
-
-
+      this.currentEvent.save();
 
 
 
@@ -124,29 +119,32 @@ var EventMaintainView = Backbone.View.extend({
 
     selectRow:function(e){
     		 var event_id = $(e.currentTarget).find("p").text()
-			 var event = this.eventsRecord.get(event_id);
-				// update tree 
-		var setting = { };
-		console.log(event.get("name"))
 
+         var event = new Event()
+
+         
+
+         $.when(event.fetch({data:{driverId:event_id,triggerId:"3",fieldId:"2"}})).then(function(){
+
+        var setting = {};
+    
 //build Event Tree
-			var zNodes =[
-		{ name:event.get("name"), open:true,
-		children: [
-		{ name:"save validation",
-		children: [
-		{ name:"check Location premium"},
-		{ name:"cehck Coverage GCL"},
-		]},
-		]},
-		];
+       var zNodes =[
+          { name:event.get("name"), open:true,
+      children: [
+           { name:"save validation",
+       children: [
+          { name:"check Location premium"},
+            { name:"cehck Coverage GCL"},
+              ]},
+          ]},
+          ];
 
-			$.fn.zTree.init($("#treeDemo"), setting, zNodes);	
-
-				// update description  
-		this.currentEvent = event
-
-
+      $.fn.zTree.init($("#eventTree"), {}, zNodes); 
+        // update description  
+         
+         },this)
+			this.currentEvent = event
 
     },
 

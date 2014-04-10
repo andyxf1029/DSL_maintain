@@ -33,8 +33,8 @@ public class RuleGroupDAOImpl extends SqlMapClientDaoSupport implements
 	}
 
 	public List<RuleGroup> findGourpsByRuleId(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.getSqlMapClientTemplate().queryForList(
+				"findGourpsByRuleId", id);
 	}
 
 }

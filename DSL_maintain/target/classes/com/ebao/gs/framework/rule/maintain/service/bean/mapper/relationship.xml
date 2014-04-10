@@ -6,7 +6,7 @@
 <sqlMap namespace="relationship">
 
 
-	
+
 
 
 	<select id="findEventByRuleId" parameterClass="java.lang.Long"
@@ -44,5 +44,18 @@
 		values (#id#, #rule_id#,
 		#group_id#)
 	</insert>
+
+
+	<insert id="insertLinkForRuleAndEvent" parameterClass="java.util.Map">
+		<selectKey resultClass="long" keyProperty="id">
+			select
+			S_RULE_EVENT_PK.Nextval from dual
+		</selectKey>
+		insert into T_GS_RELATION_RULE_EVENT (ID, RULE_ID,
+		DRIVER_ID,TRIGGER_POINT_ID,FIELD_ID)
+		values (#ruleId#, #driverId#,
+		#triggerId#,#fieldId#)
+	</insert>
+
 
 </sqlMap>

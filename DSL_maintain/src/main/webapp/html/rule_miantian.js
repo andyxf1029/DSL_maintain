@@ -23,7 +23,15 @@ var AppView = Backbone.View.extend({
         'click #rule_table>tbody>tr' : 'selectRow',
         'click #update_rule' :'updateRule',
         'click #rule_group_labels>a>i' :'deleteGroup',
+        'change input':'fieldChanged'
         
+    },
+
+    fieldChanged: function(e){
+      var field = $(e.currentTarget)
+      console.log(field)
+
+
     },
 
     saveRuleBody:function(){
@@ -69,8 +77,23 @@ var AppView = Backbone.View.extend({
        
 
       $.when(ruleContent.fetch()).then(function(){
+
+
+
+       // var ruleTree = {name:ruleContent.get("name"),open:true}
+       // var groupTreeList=[]
+       //// ruleContent.get("groupList").each(function(ruleGroup){
+       //    var groupTree = {name:ruleGroup.get("name")}
+       //     groupTreeList.push(groupTree)
+       // })
+
+
+
+       
 var zNodes2 =[
   { name:ruleContent.get("name"), open:true,
+
+
     children: [
     { name:"Save Policy",
     children: [
@@ -79,7 +102,7 @@ var zNodes2 =[
     ]},
         ]},];
 
-$.fn.zTree.init($("#treeDemo2"), { }, zNodes2);
+$.fn.zTree.init($("#ruleTree"), { }, zNodes2);
 
 $("#edit_rule_attr").show();
 
@@ -163,6 +186,10 @@ $("#edit_rule_attr").show();
 
       },
 });
+
+
+
+
 
 
 

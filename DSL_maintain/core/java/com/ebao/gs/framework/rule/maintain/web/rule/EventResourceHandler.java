@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,9 +27,30 @@ public class EventResourceHandler {
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	public void assignToEvent(Event event) {
-		eventService.assignGourpToEvent(event, event.getGroupList());
+	public void assignToEvent(@RequestBody String eventJson) {
+		System.out.println(eventJson);
+		Event event = JSON.parseObject(eventJson, Event.class);
+
+		// eventService.assignGourpToEvent(event, event.getGroupList());
 		eventService.assignRuleToEvent(event, event.getRuleList());
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	@ResponseBody
+	public Event loadEvent(@RequestParam("driverId") long driverId,
+			@RequestParam("triggerId") long triggerId,
+			@RequestParam("fieldId") long fieldId) {
+		Event event = new Event();
+		
+		
+		
+
+		event.setName("Save");
+
+		return event;
+
+		// eventService.assignGourpToEvent(event, event.getGroupList());
+		// eventService.assignRuleToEvent(event, event.getRuleList());
 	}
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
@@ -36,8 +58,9 @@ public class EventResourceHandler {
 	public String searchEvents(@RequestParam("name") String searchName,
 			@RequestParam("type") String eventType) {
 
-		System.out.println("test-------");
 		Map<String, Object> requestMap = new HashMap<String, Object>();
+		requestMap.put("EventName", searchName);
+		requestMap.put("eventType", eventType);
 		List<Event> eventList = eventService.searchEventByCondition(requestMap);
 		return JSON.toJSONString(eventList);
 	}

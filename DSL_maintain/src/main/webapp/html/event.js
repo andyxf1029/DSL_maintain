@@ -1,14 +1,10 @@
 var Event = Backbone.Model.extend({
-	urlRoot: "dsl/event",
+	urlRoot: "restful/event",
         initialize: function(){
            
         },
         defaults:{ 
-          "eventName":"Before Save",
-          "eventType":"UI",
-          "business_unit":"contract",
-          "product":"CGL",
-          "verison":"1"
+          "name":"Save",
         }
     });
 	

@@ -8,11 +8,27 @@ public class Rule {
 
 	private String rulePath;
 
+	public String getRuleType() {
+		return ruleType;
+	}
+
+	public void setRuleType(String ruleType) {
+		this.ruleType = ruleType;
+	}
+
+	public String getRuleLevel() {
+		return ruleLevel;
+	}
+
+	public void setRuleLevel(String ruleLevel) {
+		this.ruleLevel = ruleLevel;
+	}
+
 	private Long id;
 
-	private Integer ruleType;
+	private String ruleType;
 
-	private Integer ruleLevel;
+	private String ruleLevel;
 
 	private String ruleDescription;
 
@@ -42,22 +58,6 @@ public class Rule {
 
 	public void setRulePath(String rulePath) {
 		this.rulePath = rulePath;
-	}
-
-	public Integer getRuleType() {
-		return ruleType;
-	}
-
-	public void setRuleType(Integer ruleType) {
-		this.ruleType = ruleType;
-	}
-
-	public Integer getRuleLevel() {
-		return ruleLevel;
-	}
-
-	public void setRuleLevel(Integer ruleLevel) {
-		this.ruleLevel = ruleLevel;
 	}
 
 	public String getRuleDescription() {

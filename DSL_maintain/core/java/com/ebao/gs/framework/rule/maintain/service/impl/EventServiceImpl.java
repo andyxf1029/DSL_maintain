@@ -29,7 +29,6 @@ public class EventServiceImpl implements IEventService {
 		for (Rule rule : ruleList) {
 			relationshipDAO.insertLinkForRuleAndEvent(rule.getId(), event);
 		}
-
 	}
 
 	public List<Event> searchEventByCondition(Map<String, Object> requestMap) {
@@ -52,7 +51,7 @@ public class EventServiceImpl implements IEventService {
 
 		List<Rule> ruleList = relationshipDAO.findRuleByEvent(event);
 
-		event.setRuleList(ruleList);
+//		event.setRuleList(ruleList);
 
 		// TODO Auto-generated method stub
 		return null;

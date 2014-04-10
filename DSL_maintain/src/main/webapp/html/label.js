@@ -32,7 +32,7 @@ var RuleLabelView = Backbone.View.extend({
   tagName:"div",
 
   className:"ui green label",
-    template: _.template($('#event_label_template').html()),
+    template: _.template($('#rule_label_template').html()),
    
 
     render: function() {
@@ -48,7 +48,7 @@ var GroupLabelView = Backbone.View.extend({
   tagName:"div",
 
   className:"ui blue label",
-    template: _.template($('#event_label_template').html()),
+    template: _.template($('#group_label_template').html()),
    
 
     render: function() {

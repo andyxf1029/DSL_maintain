@@ -36,6 +36,7 @@ var Rule  = Backbone.Model.extend({
 
 
 
+
 var RuleView = Backbone.View.extend({
 
   tagName:"tr",
@@ -70,3 +71,30 @@ var RulesView = Backbone.View.extend({
 
 
   });
+
+
+var RuleUpdateView =  Backbone.View.extend({
+
+      template: _.template($('#rule-form-template').html()),
+
+
+       events:{  
+        'click #update_rule' : 'updateRule',
+    },
+
+
+      render: function() {
+      Backbone.ModelBinding.bind(this);  
+      this.$el.html(this.template(this.model.toJSON()));
+      return this ;
+    },
+
+      updateRule :function(){
+        console.log(this.model)
+
+
+    },
+
+
+
+});

@@ -91,7 +91,7 @@
 
 
 							<div class="zTreeDemoBackground left">
-								<ul id="treeDemo" class="ztree"></ul>
+								<ul id="eventTree" class="ztree"></ul>
 							</div>
 						</div>
 
@@ -252,7 +252,7 @@
 						</div>
 
 						<div class="field">
-							<input type="file" name="somename" size="chars">
+							<form id="my-awesome-dropzone" action="/target" class="dropzone"></form>
 
 						</div>
 
@@ -436,7 +436,7 @@
       <!-- rule tree html -->
 						<div class="eight wide column">
 							<div class="zTreeDemoBackground left">
-								<ul id="treeDemo2" class="ztree"></ul>
+								<ul id="ruleTree" class="ztree"></ul>
 							</div>
 						</div>
 
@@ -528,23 +528,36 @@
      <td><%- status %></td>
   </script>
 
-<script type="text/template" id="event_label_template">
-        	 <%- name %> <p hidden><%- id %></p>
+<script type="text/template" id="rule_label_template">
+        	 <%- name %> <p type='rule' hidden><%- id %></p>
+</script>
+
+<script type="text/template" id="group_label_template">
+        	 <%- name %> <p type='group' hidden><%- id %></p>
 </script>
 
 
 
-
   <script type="text/template" id="event-template"> 
-  		
+  		<p id='driver_id' hidden><%- driverId %></p>
+  		<p id='trigger_id' hidden><%- triggerId %></p>
+  		<p id='field_prdt_id' hidden><%- driverId %></p>
         <td><%- name %></td>
         
   </script>
 
 <script type="text/template" id="label-template">
            
-             <%- name %><i id='<%- name %>' class="icon close"></i>
+          <%- name %><i id='<%- name %>' class="icon close"></i>
            </script>
+
+
+
+        <script type="text/template" id="rule-form-template">
+           
+          <%- name %><i id='<%- name %>' class="icon close"></i>
+           </script>
+
 
 
 
@@ -553,29 +566,24 @@
 <script src="/dsl/html/javascript/semantic.js"></script>
 <script src="/dsl/html/javascript/codemirror.js"></script>
 <script src="/dsl/html/javascript/groovy.js"></script>
+<script src="/dsl/html/javascript/jquery-ui.js"></script>
+<script src="/dsl/html/javascript/jquery.shapeshift.js"></script>
 <script src="/dsl/html/label.js"></script>
 <script src="/dsl/html/rules.js"></script>
 <script src="/dsl/html/event.js"></script>
 <script src="/dsl/html/rule_group.js"></script>
 <script src="/dsl/html/event_maintain.js"></script>
-<script src="/dsl/html/app_miantian.js"></script>
-<script src="/dsl/html/javascript/jquery-ui.js"></script>
-<script src="/dsl/html/javascript/jquery.shapeshift.js"></script>
-
-
+<script src="/dsl/html/rule_miantian.js"></script>
+<script src="/dsl/html/script/backbone.modelbinding.js"></script>
+<script src="/dsl/html/script/dropzone.js"></script>
 
 <SCRIPT type="text/javascript">
 $(document)
   .ready(function() {
     $('.filter.menu .item')
       .tab();
-
-  
     $('.ui.dropdown')
       .dropdown();
-
-	
-
 
   })
 ;
