@@ -5,11 +5,7 @@ import java.util.List;
 
 public class Event {
 
-	private long driverId;
-
-	private long fieldId;
-
-	private long triggerId;
+	private long id;
 
 	private String fieldLabel;
 
@@ -17,69 +13,16 @@ public class Event {
 
 	private String code;
 
-	public String getEventType() {
-		return eventType;
-	}
-
-	public void setEventType(String eventType) {
-		this.eventType = eventType;
-	}
-
-	private String name;
+	private String eventName;
 
 	private String eventType;
 
-	private List<Rule> ruleList = new ArrayList<Rule>();
-
-	//
-	// private List<RuleGroup> groupList = new ArrayList<RuleGroup>();
-
-	// public List<RuleGroup> getGroupList() {
-	// return groupList;
-	// }
-	//
-	// public void setGroupList(List<RuleGroup> groupList) {
-	// this.groupList = groupList;
-	// }
-	//
-	public List<Rule> getRuleList() {
-		return ruleList;
+	public long getId() {
+		return id;
 	}
 
-	public void setRuleList(List<Rule> ruleList) {
-		this.ruleList = ruleList;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public long getDriverId() {
-		return driverId;
-	}
-
-	public void setDriverId(long driverId) {
-		this.driverId = driverId;
-	}
-
-	public long getFieldId() {
-		return fieldId;
-	}
-
-	public void setFieldId(long fieldId) {
-		this.fieldId = fieldId;
-	}
-
-	public long getTriggerId() {
-		return triggerId;
-	}
-
-	public void setTriggerId(long triggerId) {
-		this.triggerId = triggerId;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getFieldLabel() {
@@ -106,11 +49,52 @@ public class Event {
 		this.code = code;
 	}
 
-	@Override
-	public String toString() {
-		return "Event [driverId=" + driverId + ", fieldId=" + fieldId
-				+ ", triggerId=" + triggerId + ", fieldLabel=" + fieldLabel
-				+ ", fieldLevel=" + fieldLevel + ", code=" + code + ", name="
-				+ name + ", eventType=" + eventType + "]";
+	public String getEventName() {
+		return eventName;
 	}
+
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
+
+	public String getEventType() {
+		return eventType;
+	}
+
+	public void setEventType(String eventType) {
+		this.eventType = eventType;
+	}
+
+	public String getTriggerType() {
+		return triggerType;
+	}
+
+	public void setTriggerType(String triggerType) {
+		this.triggerType = triggerType;
+	}
+
+	private String triggerType;
+
+	private List<Rule> ruleList = new ArrayList<Rule>();
+
+	//
+	private List<RuleGroup> groupList = new ArrayList<RuleGroup>();
+
+	public List<RuleGroup> getGroupList() {
+		return groupList;
+	}
+
+	public void setGroupList(List<RuleGroup> groupList) {
+		this.groupList = groupList;
+	}
+
+	//
+	public List<Rule> getRuleList() {
+		return ruleList;
+	}
+
+	public void setRuleList(List<Rule> ruleList) {
+		this.ruleList = ruleList;
+	}
+
 }

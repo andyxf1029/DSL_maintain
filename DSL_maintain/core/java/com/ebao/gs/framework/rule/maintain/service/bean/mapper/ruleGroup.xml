@@ -4,12 +4,17 @@
     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="group">
+
+
 	<typeAlias alias="RuleGroup"
 		type="com.ebao.gs.framework.rule.maintain.service.bean.RuleGroup" />
-	<resultMap class="RuleGroup" id="RuleGroupMap">
+
+
+	<resultMap id="groupMap" class="RuleGroup">
 		<result property="id" column="RULE_GROUP_ID" />
 		<result property="name" column="GROUP_NAME" />
 	</resultMap>
+
 
 
 
@@ -27,27 +32,31 @@
 	</sql>
 
 
-	<select id="queryRules" parameterClass="java.util.Map"
-		resultMap="RuleGroupMap">
+	<select id="queryRuleGroup" parameterClass="java.util.Map"
+		resultMap="groupMap">
 		select * from T_GS_FRAMEWORK_RULE_GROUP where 1=1
-		<include refid="groupConditions" />
+		and
+		GROUP_NAME like
+		'%$name$%'
 	</select>
 
-	<sql id="Base_Column_List">
+	<sql id="Group_Column_List">
 		RULE_GROUP_ID, GROUP_NAME
 	</sql>
+	
+	 
 
-	<select id="selectByPrimaryKey" resultMap="RuleGroupMap"
+	<select id="selectGroupByPrimaryKey" resultMap="groupMap"
 		parameterClass="java.lang.Long">
 		select
-		<include refid="Base_Column_List" />
+		<include refid="Group_Column_List" />
 		from T_GS_FRAMEWORK_RULE_GROUP
 		where RULE_GROUP_ID = #id#
 	</select>
 
 
 
-	<select id="rule_count" resultClass="int">
+	<select id="group_count" resultClass="int">
 		SELECT COUNT(*) AS NUM FROM
 		(
 		select * from
@@ -72,14 +81,14 @@
 		T_GS_FRAMEWORK_RULE_GROUP WHERE 1=1
 		AND RULE_GROUP_ID=#id#
 	</delete>
-	
-	
+
+
 	<select id="findGourpsByRuleId" parameterClass="java.lang.Long"
-		resultClass="RuleGroupMap">
-		select g.RULE_GROUP_ID,g.GROUP_NAME from  T_GS_FRAMEWORK_RULE_GROUP g ,t_gs_relation_rulegroup_rule r
-		where g.RULE_GROUP_ID=r.RULE_GROUP_ID and rule_id
+		resultMap="groupMap">
+		select g.RULE_GROUP_ID,g.GROUP_NAME from
+		T_GS_FRAMEWORK_RULE_GROUP g ,t_gs_relation_rulegroup_rule r
+		where
+		g.RULE_GROUP_ID=r.RULE_GROUP_ID and rule_id
 		=#id#
 	</select>
-
-
 </sqlMap>

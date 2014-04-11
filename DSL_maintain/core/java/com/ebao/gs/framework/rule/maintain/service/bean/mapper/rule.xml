@@ -6,6 +6,8 @@
 <sqlMap namespace="rule">
 	<typeAlias alias="Rule"
 		type="com.ebao.gs.framework.rule.maintain.service.bean.Rule" />
+		
+		
 	<resultMap class="Rule" id="BaseResultMap">
 		<result property="id" column="rule_id" />
 		<result property="ruleType" column="RULE_TYPE" />

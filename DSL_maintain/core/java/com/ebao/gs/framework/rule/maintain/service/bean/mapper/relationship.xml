@@ -52,9 +52,21 @@
 			S_RULE_EVENT_PK.Nextval from dual
 		</selectKey>
 		insert into T_GS_RELATION_RULE_EVENT (ID, RULE_ID,
-		DRIVER_ID,TRIGGER_POINT_ID,FIELD_ID)
-		values (#ruleId#, #driverId#,
-		#triggerId#,#fieldId#)
+		EVENT_ID)
+		values
+		(#id#,#ruleId#, #eventId#)
+	</insert>
+
+
+	<insert id="insertLinkForRuleGroupAndEvent" parameterClass="java.util.Map">
+		<selectKey resultClass="long" keyProperty="id">
+			select
+			S_GROUP_EVENT_PK.Nextval from dual
+		</selectKey>
+		insert into T_GS_RELATION_RULEGROUP_EVENT (ID, RULE_ID,
+		EVENT_ID)
+		values
+		(#id#,#ruleGroupId#, #eventId#)
 	</insert>
 
 

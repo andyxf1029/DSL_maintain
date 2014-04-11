@@ -48,16 +48,17 @@ public class RelationshipDAOImpl extends SqlMapClientDaoSupport implements
 	}
 
 	public void insertLinkForGroupAndEvent(long id, Event event) {
-		// TODO Auto-generated method stub
-
+		Map<String, Object> paramterMap = new HashMap<String, Object>();
+		paramterMap.put("ruleGroupId", id);
+		paramterMap.put("eventId", event.getId());
+		this.getSqlMapClientTemplate().insert("insertLinkForRuleGroupAndEvent",
+				paramterMap);
 	}
 
 	public void insertLinkForRuleAndEvent(Long id, Event event) {
 		Map<String, Object> paramterMap = new HashMap<String, Object>();
 		paramterMap.put("ruleId", id);
-		paramterMap.put("driverId", event.getDriverId());
-		paramterMap.put("triggerId", event.getTriggerId());
-		paramterMap.put("fieldId", event.getFieldId());
+		paramterMap.put("eventId", event.getId());
 		this.getSqlMapClientTemplate().insert("insertLinkForRuleAndEvent",
 				paramterMap);
 	}

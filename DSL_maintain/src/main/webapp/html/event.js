@@ -4,7 +4,7 @@ var Event = Backbone.Model.extend({
            
         },
         defaults:{ 
-          "name":"Save",
+          "eventName":"Save",
         }
     });
 	

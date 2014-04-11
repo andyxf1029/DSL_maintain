@@ -32,7 +32,7 @@ public class RuleResourceHandler {
 		List<Rule> rules = ruleService.searchRule(searchName);
 		return JSON.toJSONString(rules);
 
-	}
+	}   
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	@ResponseBody

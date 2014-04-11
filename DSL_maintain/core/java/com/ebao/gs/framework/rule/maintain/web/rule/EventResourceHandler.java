@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,39 +26,27 @@ public class EventResourceHandler {
 		this.eventService = eventService;
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.PUT)
 	@ResponseBody
 	public void assignToEvent(@RequestBody String eventJson) {
-		System.out.println(eventJson);
 		Event event = JSON.parseObject(eventJson, Event.class);
-
-		// eventService.assignGourpToEvent(event, event.getGroupList());
+		eventService.assignGourpToEvent(event, event.getGroupList());
 		eventService.assignRuleToEvent(event, event.getRuleList());
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public Event loadEvent(@RequestParam("driverId") long driverId,
-			@RequestParam("triggerId") long triggerId,
-			@RequestParam("fieldId") long fieldId) {
+	public String findEventById(@PathVariable String id) {
 		Event event = new Event();
-		
-		
-		
-
-		event.setName("Save");
-
-		return event;
-
-		// eventService.assignGourpToEvent(event, event.getGroupList());
-		// eventService.assignRuleToEvent(event, event.getRuleList());
+		event.setId(Long.valueOf(id));
+		eventService.loadEventRelationship(event);
+		return JSON.toJSONString(event);
 	}
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	@ResponseBody
 	public String searchEvents(@RequestParam("name") String searchName,
 			@RequestParam("type") String eventType) {
-
 		Map<String, Object> requestMap = new HashMap<String, Object>();
 		requestMap.put("EventName", searchName);
 		requestMap.put("eventType", eventType);
@@ -65,10 +54,9 @@ public class EventResourceHandler {
 		return JSON.toJSONString(eventList);
 	}
 
-	@RequestMapping(value = "relationship", method = RequestMethod.POST)
-	public Event loadEventRelationship(Event event) {
-
-		return eventService.loadEventRelationship(event);
-
-	}
+	// @RequestMapping(value = "relationship", method = RequestMethod.POST)
+	// public Event loadEventRelationship(Event event) {
+	// return eventService.loadEventRelationship(event);
+	//
+	// }
 }

@@ -7,7 +7,10 @@
 		cacheModelsEnabled="true" enhancementEnabled="true"
 		lazyLoadingEnabled="true" />
 	<sqlMap
+		resource="com/ebao/gs/framework/rule/maintain/service/bean/mapper/ruleGroup.xml" />
+	<sqlMap
 		resource="com/ebao/gs/framework/rule/maintain/service/bean/mapper/rule.xml" />
 	<sqlMap
 		resource="com/ebao/gs/framework/rule/maintain/service/bean/mapper/relationship.xml" />
+
 </sqlMapConfig>  

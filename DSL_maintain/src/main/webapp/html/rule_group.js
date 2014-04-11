@@ -8,7 +8,7 @@ var ruleGroup  = Backbone.Model.extend({
 
 var RuleGroupList = Backbone.Collection.extend({
 
-  url: "restful/ruleGourps",
+  url: "restful/group/list",
 
    model: ruleGroup,
   

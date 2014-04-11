@@ -160,8 +160,7 @@
 						<div class="field">
 							<label>Business Unit</label>
 							<div class="ui selection dropdown">
-								<input type="hidden" name="gender">
-								<div class="text">casualty</div>
+								<div class="text">Select</div>
 								<i class="dropdown icon"></i>
 								<div class="menu">
 									<div class="item" data-value="0">casualty</div>
@@ -174,8 +173,7 @@
 						<div class="field">
 							<label>Product</label>
 							<div class="ui selection dropdown">
-								<input type="hidden" name="gender">
-								<div class="text">casualty</div>
+								<div class="text">Select</div>
 								<i class="dropdown icon"></i>
 								<div class="menu">
 									<div class="item" data-value="0">General Liability</div>
@@ -186,8 +184,7 @@
 						<div class="field">
 							<label>Version</label>
 							<div class="ui selection dropdown">
-								<input type="hidden" name="gender">
-								<div class="text">casualty</div>
+								<div class="text">Select</div>
 								<i class="dropdown icon"></i>
 								<div class="menu">
 									<div class="item" data-value="0">1</div>
@@ -200,8 +197,7 @@
 						<div class="field">
 							<label>Rule level</label>
 							<div class="ui selection dropdown">
-								<input type="hidden" name="Rule level">
-								<div class="text">Coverage</div>
+								<div class="text">Select</div>
 								<i class="dropdown icon"></i>
 								<div class="menu">
 									<div class="item" data-value="0">Coverage</div>
@@ -216,8 +212,7 @@
 						<div class="field">
 							<label>Rule Type</label>
 							<div class="ui selection dropdown">
-								<input type="hidden" name="Rule Type">
-								<div class="text">Coverage</div>
+								<div class="text">Select</div>
 								<i class="dropdown icon"></i>
 								<div class="menu">
 									<div class="item" data-value="0">Service</div>
@@ -229,8 +224,7 @@
 						<div class="field">
 							<label>Rule Group</label>
 							<div class="ui selection dropdown">
-								<input type="hidden" name="Rule Group">
-								<div class="text">Coverage</div>
+								<div class="text">Select</div>
 								<i class="dropdown icon"></i>
 								<div class="menu">
 									<div class="item" data-value="0">Validation Policy</div>
@@ -325,34 +319,32 @@
   </div>
   <div class="row">
     <div class="four wide column">
-       <label>Business Unit </label>
-       <div class="ui selection dropdown">
-        <input type="hidden" name="gender">
-        <div class="text">casualty</div>
-        <i class="dropdown icon"></i>
-        <div class="menu">
-         <div class="item" data-value="0">casualty</div>
-         <div class="item" data-value="1">contract</div>
-        </div>
-       </div>
-    </div>
+      	<label>Business Unit</label>
+		<div class="ui selection dropdown">
+		<div class="text">Select</div>
+		<i class="dropdown icon"></i>
+		<div class="menu">
+				<div class="item" data-value="0">casualty</div>
+				<div class="item" data-value="1">contract</div>
+		</div>
+		</div>   
+		</div>
      <div class="four wide column">
       <label>Product</label>
-       <div class="ui selection dropdown">
-        <input type="hidden" name="gender">
-        <div class="text">casualty</div>
-        <i class="dropdown icon"></i>
-        <div class="menu">
-         <div class="item" data-value="0">General Liability</div>
-         <div class="item" data-value="1">Inland Marine</div>
-        </div>
-       </div>
+							<div class="ui selection dropdown">
+								<div class="text">Select</div>
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item" data-value="0">General Liability</div>
+									<div class="item" data-value="1">Inland Marine</div>
+								</div>
+							</div>
     </div>
      <div class="four wide column">
       <label>Version</label>
        <div class="ui selection dropdown">
-        <input type="hidden" name="gender">
-        <div class="text">casualty</div>
+        
+        <div class="text">Select</div>
         <i class="dropdown icon"></i>
         <div class="menu">
          <div class="item" data-value="0">1</div>
@@ -365,8 +357,8 @@
     <div class="four wide column">
       <label>Rule level</label>
        <div class="ui selection dropdown">
-        <input type="hidden" name="Rule level">
-        <div class="text">Coverage</div>
+       
+        <div class="text">Select</div>
         <i class="dropdown icon"></i>
         <div class="menu">
          <div class="item" data-value="0">Coverage</div>
@@ -380,8 +372,8 @@
      <div class="four wide column">
       <label>Rule Type</label>
        <div class="ui selection dropdown">
-        <input type="hidden" name="Rule Type">
-        <div class="text">Coverage</div>
+        
+        <div class="text">Select</div>
         <i class="dropdown icon"></i>
         <div class="menu">
          <div class="item" data-value="0">Service</div>
@@ -392,8 +384,8 @@
      <div class="four wide column">
       <label>Rule Group</label>
        <div class="ui selection dropdown">
-        <input type="hidden" name="Rule Group">
-        <div class="text">Coverage</div>
+        
+        <div class="text">Select</div>
         <i class="dropdown icon"></i>
         <div class="menu">
          <div class="item" data-value="0">Validation Policy</div>
@@ -406,8 +398,8 @@
  	<div class="six wide column">
       <label>Transaction</label>
        <div class="ui selection dropdown">
-        <input type="hidden" name="Rule Group">
-        <div class="text">Coverage</div>
+       	
+        <div class="text">Select</div>
         <i class="dropdown icon"></i>
         <div class="menu">
          <div class="item" data-value="0">Rate</div>
@@ -539,10 +531,8 @@
 
 
   <script type="text/template" id="event-template"> 
-  		<p id='driver_id' hidden><%- driverId %></p>
-  		<p id='trigger_id' hidden><%- triggerId %></p>
-  		<p id='field_prdt_id' hidden><%- driverId %></p>
-        <td><%- name %></td>
+  		<p id='eventId' hidden><%- id %></p>
+        <td><%- eventName %></td>
         
   </script>
 
@@ -574,8 +564,8 @@
 <script src="/dsl/html/rule_group.js"></script>
 <script src="/dsl/html/event_maintain.js"></script>
 <script src="/dsl/html/rule_miantian.js"></script>
-<script src="/dsl/html/script/backbone.modelbinding.js"></script>
-<script src="/dsl/html/script/dropzone.js"></script>
+<script src="/dsl/html/scripts/backbone.modelbinding.js"></script>
+<script src="/dsl/html/scripts/dropzone.js"></script>
 
 <SCRIPT type="text/javascript">
 $(document)

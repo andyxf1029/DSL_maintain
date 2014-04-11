@@ -42,9 +42,10 @@ public class RuleServiceImpl implements IRuleService {
 		List<RuleGroup> groupList = groupDao.findGourpsByRuleId(rule.getId());
 		rule.setGroupList(groupList);
 
-		// TODO call event Service ;
-		// List<Long> eventIdList = this.relationshipDao.findEventByRuleId(rule
-		// .getId());
+		List<Long> eventIdList = this.relationshipDao.findEventByRuleId(rule
+				.getId());
+		
+		
 
 		// TODO call event Service ;
 
@@ -84,7 +85,6 @@ public class RuleServiceImpl implements IRuleService {
 			FileUtils.writeStringToFile(new File(rule.getRulePath()),
 					content.getContent());
 		}
-		// TODO Auto-generated method stub
 	}
 
 	public Long addOrUpdate(Rule rule) {

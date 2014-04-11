@@ -32,12 +32,9 @@ public class EventServiceImpl implements IEventService {
 	}
 
 	public List<Event> searchEventByCondition(Map<String, Object> requestMap) {
-		// TODO Auto-generated method stub
 		Event event = new Event();
-		event.setDriverId(1L);
-		event.setFieldId(2L);
-		event.setTriggerId(3L);
-		event.setName("Save Policy");
+		event.setId(1L);
+		event.setEventName("Save");
 		List<Event> eventList = new ArrayList<Event>();
 		eventList.add(event);
 		return eventList;
@@ -45,15 +42,9 @@ public class EventServiceImpl implements IEventService {
 
 	public Event loadEventRelationship(Event event) {
 		List<RuleGroup> grouplist = relationshipDAO.findGroupByEvent(event);
-		
-		
-		
-
 		List<Rule> ruleList = relationshipDAO.findRuleByEvent(event);
-
-//		event.setRuleList(ruleList);
-
-		// TODO Auto-generated method stub
-		return null;
+		event.setRuleList(ruleList);
+		event.setGroupList(grouplist);
+		return event;
 	}
 }

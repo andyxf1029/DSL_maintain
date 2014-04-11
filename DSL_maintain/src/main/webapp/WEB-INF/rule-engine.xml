@@ -63,6 +63,8 @@
 	
 	<bean id="eventService"
 		class="com.ebao.gs.framework.rule.maintain.service.impl.EventServiceImpl">
+		<property name="relationshipDAO" ref="relationshipDAO" />
+			
 	</bean>
 
 

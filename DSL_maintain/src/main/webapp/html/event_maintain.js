@@ -58,11 +58,7 @@ var EventMaintainView = Backbone.View.extend({
 
 
     searchRuleOrGroup:function(){
-    	
-
-
     	var type_value = this.search_type.dropdown('get value');
-    	
 		var input = this.search_rule_name.val();
 		this.source_label.empty();
     	if(type_value==1){
@@ -81,7 +77,6 @@ var EventMaintainView = Backbone.View.extend({
 
     	if(type_value==2){
     		var groupList = new RuleGroupList;
-
 			$.when(groupList.fetch({data:{name:input}})).then(function(){
           	groupList.each(function(rule){
           		var group_label = new GroupLabelView({model:rule});
@@ -120,11 +115,9 @@ var EventMaintainView = Backbone.View.extend({
     selectRow:function(e){
     		 var event_id = $(e.currentTarget).find("p").text()
 
-         var event = new Event()
+         var event = new Event({id:event_id})
 
-         
-
-         $.when(event.fetch({data:{driverId:event_id,triggerId:"3",fieldId:"2"}})).then(function(){
+         $.when(event.fetch()).then(function(){
 
         var setting = {};
     
