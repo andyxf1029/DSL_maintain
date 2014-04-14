@@ -1,58 +1,49 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Standard Meta -->
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-<!-- Site Properities -->
-<title>Maintain Rules</title>
+  <!-- Site Properities -->
+  <title>Configuration Center</title>
+
+  
+ 
 
 </head>
-<body id="rule_engine">
-<div>
-<div class="ui grid">
-	<div class="ten wide column">
-    <div class="ui segment">
- <div class="ui large header"><i class="settings icon"></i>Configuration Center</div>
+<body id="home">
+  <div class="ui inverted page grid masthead segment">
+    <div class="column">
+      <div class="inverted secondary pointing ui menu">
+        <div class="header item"><div class="ui large header"><i class="settings icon"></i>Configuration Center</div></div>
+        <div class="right menu">
+          <a class="item">Community</a>
+        </div>
+      </div>
+      <div class="ui hidden transition information">
+        <h1 class="ui inverted header">
+          Quickly setup insurance product
+        </h1>
+         <div id="menu-button" class="ui left floated black launch button">
+        <i class="list layout icon"></i> Menu
+      </div>
+
+      </div>
     </div>
   </div>
-</div>
-	<!-- edit body html -->
-	
-<div class="ui menu">
-  <a class="item">
-    System
-  </a>
-  <a class="active item">
-    Rule
-  </a>
-  <a class="item">
-    Product
-  </a>
-  <a class="item">
-    Resource
-  </a>
-  <a class="item">
-    Process
-  </a>
-  </div>
-
-
+  <div  id="configuration-body" class="ui page grid overview segment">
+    <div>
 
 
 	<!-- main tab -->
 	<div class="ui celled grid">
-		<div class="ten wide middle column">
-
-			<div class="ui tabular filter menu">
-					
-				<a class="active item" data-tab="rule">Rule Maintain</a> 
-    
-    
-    <a id="event-maintain" class="item"
+				<div class="sixteen wide middle column">
+				<div class="ui tabular filter menu">
+					<a class="active item" data-tab="rule">Rule Maintain</a> 
+    				<a id="event-maintain" class="item"
 					data-tab="event">Event Maintain</a>
 					<a  class="item" data-tab="new_rule">Add New Rule</a> 
 			</div>
@@ -128,13 +119,15 @@
 
 
       						 <div  id="search_type" class="ui selection dropdown">
-  	<div class="text">Select</div>
-  	<i class="dropdown icon"></i>
-  	<div class="menu">
-    	<div class="item" data-value="1">Rule</div>
-    	<div class="item" data-value="2">RuleGroup</div>
-    </div>
-	</div>
+
+  									<div class="text">Select</div>
+  								<i class="dropdown icon"></i>
+  									<div class="menu">
+  											<div class="item" data-value="0">Select</div>
+    										<div class="item" data-value="1">Rule</div>
+    										<div class="item" data-value="2">RuleGroup</div>
+   								 	</div>
+							</div>
 							<div class="ui icon input">
 								<input id="search_rule_name" type="text" placeholder="Search rule or group"> <i
 									id="search_ruleOrGroup" class="search icon"></i>
@@ -173,7 +166,7 @@
 
 			<!-- Create Rule  -->
 
-			<div class="ui divided inbox selection list active tab"
+			<div id="create_rule_view" class="ui divided inbox selection list active tab"
 				data-tab="new_rule">
 				<div class="ui form">
 					<div class="four fields">
@@ -181,14 +174,15 @@
 
 						<div class="field">
 							<label>Business Unit</label>
-							<div class="ui selection dropdown">
+							<div  id='BU' class="ui selection dropdown">
 								<div class="text">Select</div>
 								<i class="dropdown icon"></i>
 								<div class="menu">
-									<div class="item" data-value="0">casualty</div>
-									<div class="item" data-value="1">contract</div>
+									<div class="item" data-value="0">General Liability</div>
+									<div class="item" data-value="1">Inland Marine</div>
 								</div>
 							</div>
+
 						</div>
 
 
@@ -268,12 +262,12 @@
 						</div>
 
 						<div class="field">
-							<form id="my-awesome-dropzone" action="/target" class="dropzone"></form>
+							<input id="fileupload" type="file" name="files[]" data-url="restful/rule/upload" multiple>
 
 						</div>
 
 						<div class="field">
-							<div id="save_rule" class="ui blue submit button">Save</div>
+							<div id="create_rule" class="ui blue submit button">Create</div>
 						</div>
 					</div>
 
@@ -321,11 +315,10 @@
 						<tr>
 							<th>Rule Name</th>
 							<th>Rule Type</th>
-							<th>Rule Group</th>
+							<th>Rule Level</th>
 							<th>Business Unit</th>
 							<th>Product</th>
 							<th>Version</th>
-							<th>Status</th>
 						</tr>
 					</thead>
 				</table>
@@ -346,8 +339,9 @@
 		<div class="text">Select</div>
 		<i class="dropdown icon"></i>
 		<div class="menu">
-				<div class="item" data-value="0">casualty</div>
-				<div class="item" data-value="1">contract</div>
+				<div class="item" data-value="0">Select</div>
+				<div class="item" data-value="1">Casualty</div>
+				<div class="item" data-value="2">Contract</div>
 		</div>
 		</div>   
 		</div>
@@ -357,20 +351,21 @@
 								<div class="text">Select</div>
 								<i class="dropdown icon"></i>
 								<div class="menu">
-									<div class="item" data-value="0">General Liability</div>
-									<div class="item" data-value="1">Inland Marine</div>
+									<div class="item" data-value="0">Select</div>
+									<div class="item" data-value="1">General Liability</div>
+									<div class="item" data-value="2">Inland Marine</div>
 								</div>
 							</div>
     </div>
      <div class="four wide column">
       <label>Version</label>
        <div class="ui selection dropdown">
-        
         <div class="text">Select</div>
         <i class="dropdown icon"></i>
         <div class="menu">
-         <div class="item" data-value="0">1</div>
-         <div class="item" data-value="1">2</div>
+        	<div class="item" data-value="0">Select</div>
+         <div class="item" data-value="1">1</div>
+         <div class="item" data-value="2">2</div>
         </div>
        </div>
     </div>
@@ -432,7 +427,7 @@
        </div>
     </div>
 <div class="six wide column">
- 	 <div id="update_rule" class="ui primary button">update</div>
+ 	 <div id="update_rule" class="ui primary button">Update</div>
  	</div>
  </div>
 </div>
@@ -496,15 +491,58 @@
 			</div>
   </div>
 </div>
-</div>
+</di
+  </div>
+  </div>
 
+ 
+  <div class="ui inverted teal page grid segment">
+    <div class="ten wide column">
+      <div class="ui three column stackable grid">
+        <div class="column">
+                  </div>
+        <div class="column">
+          
+        </div>
+        <div class="column">
+         </div>
+      </div>
+    </div>
+    <div class="six wide right floated aligned column">
+      <h3 class="ui header">Contact Us</h3>
+      <addr>
+        237 Catberry Road <br>
+        Milton Keynes, London <br>
+      </addr>
+      <p>(404) 867-5309</p>
+    </div>
+  </div>
+
+  <div id="sidebar" class="ui red vertical demo sidebar menu">
+  <a class="item">
+    System
+  </a>
+  <a class="active item">
+    Rule
+  </a>
+  <a class="item">
+    Product
+  </a>
+  <a class="item">
+    Resource
+  </a>
+  <a class="item">
+    Process
+  </a>
 </div>
 </body>
 
+ <link rel="stylesheet" type="text/css" href="/dsl/html/css/semantic.css">
+  <link rel="stylesheet" type="text/css" href="/dsl/html/css/homepage.css">
 
 
 
-<link rel="stylesheet" type="text/css" href="/dsl/html/css/semantic.css">
+
 <link rel="stylesheet" href="/dsl/html/css/demo.css" type="text/css">
 <link rel="stylesheet" href="/dsl/html/css/zTreeStyle/zTreeStyle.css"
  type="text/css">
@@ -525,21 +563,27 @@
       background: transparent;
       border: 1px dashed blue;
     }
-  </style>
+    
+    textarea#rule_description{
+    	font-size: 1em;
+		border: 1px solid rgba(0, 0, 0, 0.15);	
+		color: rgba(0, 0, 0, 0.7);
+    }
 
-<script src="/dsl/html/scripts/jquery.js"></script>
-<script src="/dsl/html/scripts/jquery.address.js"></script>
-<script src="/dsl/html/javascript/underscore.js"></script>
-<script src="/dsl/html/javascript/backbone.js"></script>
+
+      </style>
+
+
 <script type="text/template" id="rule-template">
-        <p hidden><%- id %></p>
+<tr>    <td id="id"hidden><%- id %></td>
         <td><%- name %></td>
         <td><%- ruleType %></td>
-         <td><%- ruleGroup %></td>
+        <td><%- ruleLevel %></td>
         <td><%- business_unit %></td>
          <td><%- product%></td>
         <td><%- verison %></td>
-     <td><%- status %></td>
+    	
+     </tr>
   </script>
 
 <script type="text/template" id="rule_label_template">
@@ -552,8 +596,8 @@
 
 
 
-  <script type="text/template" id="event-template"> 
-  		<p id='eventId' hidden><%- eventId %></p>
+ <script type="text/template" id="event-template"> 
+  		<p id='eventId' hidden><%- id %></p>
         <td><%- eventName %></td>
         
   </script>
@@ -561,21 +605,24 @@
 <script type="text/template" id="label-template">
            
           <%- name %><i id='<%- name %>' class="icon close"></i>
-           </script>
+</script>
 
-
-
-        <script type="text/template" id="rule-form-template">
+ <script type="text/template" id="rule-form-template">
            
           <%- name %><i id='<%- name %>' class="icon close"></i>
-           </script>
+ </script>
 
-
-
-
+  <script src="/dsl/html/scripts/jquery.js"></script>
+  <script src="/dsl/html/scripts/jquery.address.js"></script>
+  <script src="/dsl/html/scripts/jquery.ui.widget.js"></script>
+<script src="/dsl/html/scripts/jquery.iframe-transport.js"></script>
+<script src="/dsl/html/scripts/jquery.fileupload.js"></script>
+  <script src="/dsl/html/javascript/underscore.js"></script>
+	<script src="/dsl/html/javascript/backbone.js"></script>
+	  <script src="/dsl/html/scripts/semantic.js"></script>
+  <script src="/dsl/html/scripts/homepage.js"></script>
 <script type="text/javascript"
 	src="/dsl/html/javascript/jquery.ztree.core-3.5.min.js"></script>
-<script src="/dsl/html/javascript/semantic.js"></script>
 <script src="/dsl/html/javascript/codemirror.js"></script>
 <script src="/dsl/html/javascript/groovy.js"></script>
 <script src="/dsl/html/javascript/jquery-ui.js"></script>
@@ -588,80 +635,8 @@
 <script src="/dsl/html/rule_miantian.js"></script>
 <script src="/dsl/html/scripts/backbone.modelbinding.js"></script>
 <script src="/dsl/html/scripts/dropzone.js"></script>
-
-<SCRIPT type="text/javascript">
-
-menu = {};
-
-// ready event
-menu.ready = function() {
-
-  // selector cache
-  var
-    $menuItem = $('.menu a.item, .menu .link.item'),
-    $dropdown = $('.main.container .menu .dropdown'),
-    // alias
-    handler = {
-
-      activate: function() {
-        if(!$(this).hasClass('dropdown')) {
-          $(this)
-            .addClass('active')
-            .closest('.ui.menu')
-            .find('.item')
-              .not($(this))
-              .removeClass('active')
-          ;
-        }
-      }
-
-    }
-  ;
-
-  $dropdown
-    .dropdown({
-      on: 'hover'
-    })
-  ;
-
-  $menuItem
-    .on('click', handler.activate)
-  ;
-
-};
-
-$(document).ready(menu.ready)
-
-
-$(document)
-  .ready(function() {
-    $('.filter.menu .item')
-      .tab();
-    $('.ui.dropdown')
-      .dropdown();
-
-
-
-  })
-;
-</SCRIPT>
-<script type="text/javascript">
-$(document)
-  .ready(function() {
-   ('.demo.sidebar').first()
-  .sidebar('attach events', '.toggle.button')
-;
-$('.toggle.button')
-  .removeClass('disabled')
-;
-
-
-  })
-
-
-</script>
-
-
+<script src="/dsl/html/init.js"></script>
+<script src="/dsl/html/create-rule.js"></script>
 
 
 </html>

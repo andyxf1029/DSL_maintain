@@ -68,7 +68,9 @@ var AppView = Backbone.View.extend({
     selectRow: function(e) {
 
 
-      var rule_id = $(e.currentTarget).find("p").text()
+      var rule_id = $(e.currentTarget).find("td[id='id']").text()
+
+      console.log("rule_id"+rule_id)
 
       var selectedRule = this.rulesRecord.get(rule_id);
 

@@ -27,6 +27,8 @@ var EventMaintainView = Backbone.View.extend({
 
     	this.source_label = $('#source_label');
 
+      
+
     },
 
      events:{  
@@ -115,8 +117,9 @@ var EventMaintainView = Backbone.View.extend({
     selectRow:function(e){
     		 var event_id = $(e.currentTarget).find("p").text()
 
-         var event = new Event({id:event_id})
+         var event = new Event
 
+     
          $.when(event.fetch()).then(function(){
 
         var setting = {};

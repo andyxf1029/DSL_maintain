@@ -6,11 +6,11 @@ var Rule  = Backbone.Model.extend({
         defaults:{ 
           "name":"",
           "ruleType":"UI",
-          "ruleGroup":"common",
+          "ruleLevel":"Coverage",
           "business_unit":"contract",
           "product":"CGL",
           "verison":"1",
-          "status":"approved",
+         
           "description":"description"
         }
     });
@@ -37,11 +37,11 @@ var Rule  = Backbone.Model.extend({
 
 
 
-var RuleView = Backbone.View.extend({
+var RuleTreeView = Backbone.View.extend({
 
   tagName:"tr",
 
-    template: _.template($('#rule-template').html()),
+    
 
 
     render: function() {
@@ -58,11 +58,12 @@ var RulesView = Backbone.View.extend({
   
     tagName: "tbody",
     
+    template: _.template($('#rule-template').html()),
 
     render: function() {
       this.collection.each(function(rule){
-        var ruleView = new RuleView({model: rule});
-        this.$el.append(ruleView.render().el);
+        console.log(this.template(rule.toJSON()));
+        this.$el.append(this.template(rule.toJSON()));
       },this);
 
       return this;
@@ -76,7 +77,6 @@ var RulesView = Backbone.View.extend({
 var RuleUpdateView =  Backbone.View.extend({
 
       template: _.template($('#rule-form-template').html()),
-
 
        events:{  
         'click #update_rule' : 'updateRule',

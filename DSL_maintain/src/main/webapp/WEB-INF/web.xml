@@ -35,6 +35,6 @@
 
 
 	<welcome-file-list>
-		<welcome-file>/html/app_maintain.html</welcome-file>
+		<welcome-file>/html/rule_maintain.html</welcome-file>
 	</welcome-file-list>
 </web-app>
