@@ -1,5 +1,5 @@
 var Rule  = Backbone.Model.extend({
-        urlRoot: "restful/rule",
+        urlRoot: "../restful/rule",
         initialize: function(){
            
         },
@@ -10,7 +10,6 @@ var Rule  = Backbone.Model.extend({
           "business_unit":"contract",
           "product":"CGL",
           "verison":"1",
-         
           "description":"description"
         }
     });
@@ -18,7 +17,7 @@ var Rule  = Backbone.Model.extend({
 
  var RuleList = Backbone.Collection.extend({
 
-  url: "restful/rule/list",
+  url: "../restful/rule/list",
 
    model: Rule,
   
@@ -26,7 +25,7 @@ var Rule  = Backbone.Model.extend({
 
 
  var RuleBody = Backbone.Model.extend({
-    urlRoot: "restful/rule/body",
+    urlRoot: "../restful/rule/body",
 
 
 
@@ -62,7 +61,6 @@ var RulesView = Backbone.View.extend({
 
     render: function() {
       this.collection.each(function(rule){
-        console.log(this.template(rule.toJSON()));
         this.$el.append(this.template(rule.toJSON()));
       },this);
 

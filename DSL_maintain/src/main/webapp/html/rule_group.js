@@ -1,5 +1,5 @@
 var ruleGroup  = Backbone.Model.extend({
-        urlRoot: "/restful/event/group",
+        urlRoot: "../restful/event/group",
         initialize: function(){
            
         },

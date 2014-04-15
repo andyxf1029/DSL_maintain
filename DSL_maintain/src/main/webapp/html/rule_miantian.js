@@ -1,38 +1,31 @@
 var AppView = Backbone.View.extend({
 
-    el: $("#rule_maintian"),
+    el: $("#rule"),
 
     initialize: function() {
-      $("#edit_rule_attr").hide();
-
-    
-
-      this.editor = CodeMirror.fromTextArea(document.getElementById("rule_content"), {
-        lineNumbers: true,
-        matchBrackets: true,
-        mode: "text/x-groovy"
-        });
+      $("#edit_rule_attr").hide();          
+    //  this.editor = CodeMirror.fromTextArea(document.getElementById("rule_content"), {
+      //  lineNumbers: true,
+        //matchBrackets: true,
+        //mode: "text/x-groovy"
+        //});
     },
 
      events:{  
-        'click #search_rule' : 'doSearch',
-        'click #add_new_rule' :'addRule',
+        'click #search-rule': 'doSearch',
+        
         'click #rule_edit' :   'editRule',
-        'click #save_body' :'saveRuleBody',
+        // 'click #save_body' :'saveRuleBody',
         'click #add_rule_group' :   'addToRuleGroup',
         'click #rule_table>tbody>tr' : 'selectRow',
         'click #update_rule' :'updateRule',
+        'click #add_new_rule' :'addRule',
         'click #rule_group_labels>a>i' :'deleteGroup',
-        'change input':'fieldChanged'
+        
         
     },
 
-    fieldChanged: function(e){
-      var field = $(e.currentTarget)
-      console.log(field)
-
-
-    },
+    
 
     saveRuleBody:function(){
       console.log("saveRuleBody");
@@ -158,20 +151,20 @@ $("#edit_rule_attr").show();
    
 
     addRule:function(){
-        console.log("go to addRule");
-        router.navigate("#new_rule");
+      console.log("go to addRule");
+       $('#myTab a[href="#new-rule"]').tab('show') 
           
     },
 
     editRule:function(){
       console.log("go to edit");
-       $('#edit_rule_body')
-        .modal('show')
-        ; 
+       // $('#edit_rule_body')
+       //  .modal('show')
+       //  ; 
 
 
 
-        this.editor.setValue(this.rule_body.get("content"))
+       //  this.editor.setValue(this.rule_body.get("content"))
     },
 
     doSearch: function() {

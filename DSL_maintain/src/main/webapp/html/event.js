@@ -1,5 +1,5 @@
 var Event = Backbone.Model.extend({
-	urlRoot: "restful/event",
+	urlRoot: "../restful/event",
         initialize: function(){
            
         },
@@ -13,7 +13,7 @@ var Event = Backbone.Model.extend({
 
 var EventList = Backbone.Collection.extend({
 
-  url: "restful/event/list",
+  url: "../restful/event/list",
 
    model: Event,
   

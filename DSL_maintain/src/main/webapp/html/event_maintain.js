@@ -3,7 +3,7 @@
 //Build rule tree 
 
 var SoureLabelView = Backbone.View.extend({
-	el: $("#event_label"),
+	el: $("#rule"),
 
 
 
@@ -16,7 +16,7 @@ var SoureLabelView = Backbone.View.extend({
 
 
 var EventMaintainView = Backbone.View.extend({
-	el: $("#event_maintain"),
+	el: $("#rule"),
 
     initialize: function() {
 
@@ -27,7 +27,7 @@ var EventMaintainView = Backbone.View.extend({
 
     	this.source_label = $('#source_label');
 
-      
+
 
     },
 
@@ -60,10 +60,12 @@ var EventMaintainView = Backbone.View.extend({
 
 
     searchRuleOrGroup:function(){
+
+      console.log("searchRuleOrGroup")
     	var type_value = this.search_type.dropdown('get value');
 		var input = this.search_rule_name.val();
 		this.source_label.empty();
-    	if(type_value==1){
+    	//if(type_value==1){
 		var ruleList = new RuleList;
         $.when(ruleList.fetch({data:{name:input}})).then(function(){
           	ruleList.each(function(rule){
@@ -71,10 +73,10 @@ var EventMaintainView = Backbone.View.extend({
           		$('#source_label').append(rule_label.render().el)
           	})
 
-     		$(".container").shapeshift();
+     		$(".label-container").shapeshift();
         })
 
-    	}
+    //	}
 
 
     	if(type_value==2){
@@ -85,7 +87,7 @@ var EventMaintainView = Backbone.View.extend({
           		$('#source_label').append(group_label.render().el)
           	})
 
-     		$(".container").shapeshift();
+     		$(".label-container").shapeshift();
         })	
     	}
 
@@ -115,10 +117,12 @@ var EventMaintainView = Backbone.View.extend({
 
 
     selectRow:function(e){
+        
+
     		 var event_id = $(e.currentTarget).find("p").text()
 
          var event = new Event
-
+         event.set("id",event_id);
      
          $.when(event.fetch()).then(function(){
 
@@ -151,8 +155,11 @@ var EventMaintainView = Backbone.View.extend({
 
 	$.when(eventsList.fetch({data:{name:"input",type:"type"}})).then(function(){
          var eventsView = new EventListView({collection:eventsList});
+        var viewHtml =  eventsView.render().el
+        console.log(viewHtml)
+
          $("#event_table>tbody").remove();
-          $("#event_table").append(eventsView.render().el);
+          $("#event_table").append(viewHtml);
         })
 
 	this.eventsRecord = eventsList

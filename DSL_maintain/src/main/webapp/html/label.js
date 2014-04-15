@@ -9,29 +9,23 @@ var Lable  = Backbone.Model.extend({
 var LabelView = Backbone.View.extend({
   tagName:"a",
 
-  className:"ui label",
+  className:"argolable",
     template: _.template($('#label-template').html()),
-    events:{ 
-       
-        'click .icon.close'  :'deleteLabel'
-
-    },
+    
 
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
       return this ;
     },
 
-    deleteLabel:function(){
-        this.model.set("status","delete");
-    }
+    
  });
 
 
 var RuleLabelView = Backbone.View.extend({
   tagName:"div",
 
-  className:"ui green label",
+  className:"argolable",
     template: _.template($('#rule_label_template').html()),
    
 
@@ -47,7 +41,7 @@ var RuleLabelView = Backbone.View.extend({
 var GroupLabelView = Backbone.View.extend({
   tagName:"div",
 
-  className:"ui blue label",
+  className:"argolable",
     template: _.template($('#group_label_template').html()),
    
 

@@ -1,5 +1,5 @@
 var CreateRuleView = Backbone.View.extend({
-	el: $("#create_rule_view"),
+	el: $("#rule"),
 
     initialize: function() {
 
