@@ -1,0 +1,703 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <!-- Site Properities -->
+  <title>Rule Center</title>
+
+
+<style>
+
+.border{
+background-color: #FFFFFF;
+-webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+margin: 1em 0em;
+padding: 1em;
+border-radius: 5px 5px 5px 5px;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+-ms-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+select.rule-dropdown{
+width: 30%;
+
+}
+
+.label-container > div {
+      position: absolute;
+      width: 100px
+    }
+
+.label-container > .ss-placeholder-child {
+      background: transparent;
+      border: 1px dashed blue;
+    }
+
+input#rule_group_label {
+width: 30%;
+}
+
+textarea.form-control{
+	width: 80%
+}
+
+button#update_rule{
+position: relative;
+top: 20px;
+}
+
+.positionOffset20px{
+position: relative;
+top: 25px;
+}
+
+
+.argolable{
+cursor: pointer;
+background-color: #1AB8F3 !important;
+border-color: #1AB8F3 !important;
+color: #FFFFFF !important;
+margin-right: 0em;
+display: inline-block;
+vertical-align: middle;
+margin: -0.25em 0.25em 0em;
+background-color: #E8E8E8;
+border-color: #E8E8E8;
+padding: 0.5em 0.8em;
+color: rgba(0, 0, 0, 0.65);
+text-transform: uppercase;
+font-weight: normal;
+border-radius: 0.325em;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+-ms-box-sizing: border-box;
+box-sizing: border-box;
+-webkit-transition: background 0.1s linear;
+transition: background 0.1s linear;
+}
+
+
+
+   	
+
+      </style>
+
+</head>
+<body id="rule">
+
+
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#rule-maintain" data-toggle="tab">Rule maintain</a></li>
+  <li><a href="#event" data-toggle="tab">Event maintain</a></li>
+  <li><a href="#new-rule" data-toggle="tab">Add new rule</a></li>
+ 
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="rule-maintain">
+  		<div class="container">
+	<div class="row clearfix test">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+
+					<div class="row border">
+  <div class="col-xs-6 col-sm-2">
+
+          <div class="controls">
+            <input  id="rule-search" type="text" class="form-control" placeholder="rule name">
+          </div>
+
+  </div>
+  <div class="col-xs-6 col-sm-6">
+  		<div class="controls">
+            <button id="search-rule" class="btn btn-success">Search</button>
+         </div>
+
+
+  </div>
+  <!-- Optional: clear the XS cols if their content doesn't match in height -->
+  <div class="clearfix visible-xs"></div>
+  <div class="col-xs-6 col-sm-4">
+
+  </div>
+</div>
+				
+
+				</div>	
+			</div>
+			
+
+
+			<div class="row clearfix border">
+				<div class="col-md-12 column">
+					<table id='rule_table' class="table table-hover">
+  					<thead>
+						<tr>
+							<th>Rule Name</th>
+							<th>Rule Type</th>
+							<th>Rule Level</th>
+							<th>Business Unit</th>
+							<th>Product</th>
+							<th>Version</th>
+						</tr>
+					</thead>
+
+					</table>
+				</div>
+			</div>
+			<div class="row clearfix border">
+				<div class="col-md-12 column">
+					<div id='edit_rule_attr' class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<textarea class="form-control" placeholder="descriptions" rows="3"></textarea>
+
+
+		</div>
+		
+	</div>
+<div class="row clearfix">
+		<div class="col-md-4 column">
+
+			<label class="control-label">Business Unit</label>
+          <div class="controls">
+            <select class="form-control rule-dropdown">
+              <option>Enter</option>
+              <option>Casualty</option>
+              <option>Contract</option>
+            </select>
+          </div>
+
+			
+		</div>
+		<div class="col-md-4 column">
+
+			<label class="control-label">Product</label>
+          <div class="controls">
+            <select class="form-control rule-dropdown">
+              <option>Enter</option>
+              <option>General Liability</option>
+              <option>Inland Marine</option>
+             
+            </select>
+          </div>
+
+		</div>
+		<div class="col-md-4 column">
+			<label class="control-label">Product Version</label>
+          <div class="controls">
+            <select class="form-control rule-dropdown">
+              <option>Enter</option>
+              <option>1</option>
+              <option>2</option>
+              
+            </select>
+          </div>
+
+
+		</div>
+
+		
+	</div>
+
+
+	<div class="row clearfix">
+		<div class="col-md-4 column">
+
+			<label class="control-label">Transaction</label>
+          <div class="controls">
+            <select class="form-control rule-dropdown">
+              <option>Enter</option>
+              <option>Quote</option>
+              <option>Bind</option>
+              <option>Policy</option>
+            </select>
+          </div>
+
+			
+		</div>
+		<div class="col-md-4 column">
+<label class="control-label">Rule Level</label>
+          <div class="controls">
+            <select class="form-control rule-dropdown">
+              <option>Enter</option>
+              <option>Policy</option>
+              <option>Location</option>
+              <option>Building</option>
+              <option>Coverage</option>
+            </select>
+          </div>
+			
+
+		</div>
+		<div class="col-md-4 column">
+			
+
+			
+		</div>
+
+		
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-4 column">
+			<label class="control-label">Rule name</label>
+          <input type="text" class="form-control" placeholder="rule name"/>
+
+
+	         
+
+			
+		</div>
+		<div class="col-md-4 column">
+
+			
+		</div>
+
+		<div class="col-md-4 column">
+			 <button id="update_rule" class="btn btn-success">Update</button>	
+		</div>
+		
+		
+	</div>
+
+</div>
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-6 column border">
+			<div class="zTreeDemoBackground left">
+								<ul id="ruleTree" class="ztree"></ul>
+							</div>
+
+		</div>
+		<div class="col-md-6 column border">
+			<div class='row'>
+				<b><label>description</label></b>
+								<p>here display event , rule group or rule description</p>
+
+			</div>
+
+			<div class='row'>
+				<button id="rule_edit" class="btn btn-success">Edit</button>
+				 <button id="add_new_rule" class="btn btn-success">Add new Rule</button>
+				
+
+			</div>
+
+			<div class='row'>
+				<div class="controls">
+					<input  id='rule_group_label' type="text" class="form-control" placeholder="group name"/>
+          
+          </div>
+
+
+				<div class="controls">
+            <button id='add_rule_group' class="btn btn-success">Add to Rule Group</button>
+          </div>
+				
+			</div>
+
+			<div id='rule_group_labels' class='row border'>
+
+				
+
+
+
+			</div>
+
+
+
+		</div>
+	</div>
+	</div>
+  </div>
+  <div class="tab-pane" id="event">
+  	<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+
+					<div class="row border">
+  <div class="col-xs-6 col-sm-2">
+
+          <div class="controls">
+            <label class="control-label">Event type</label>
+          <div class="controls">
+            <select class="form-control">
+              <option>Enter</option>
+              <option>UI</option>
+              <option>Page</option>
+              <option>Service</option>
+            </select>
+          </div>
+          </div>
+
+  </div>
+  <div class="col-xs-6 col-sm-2">
+  		<div class="controls">
+            <input  id="event-search" type="text" class="form-control positionOffset20px" placeholder="Event name">
+         </div>
+
+
+  </div>
+
+  <div class="col-xs-6 col-sm-4">
+  		<div class="controls">
+            <button id="search_event" class="btn btn-success positionOffset20px">Search</button>
+         </div>
+
+
+  </div>
+  <!-- Optional: clear the XS cols if their content doesn't match in height -->
+  <div class="clearfix visible-xs"></div>
+  <div class="col-xs-6 col-sm-4">
+
+  </div>
+
+
+
+				</div>
+			</div>
+			<div class="row clearfix ">
+				<div class="col-md-12 column border">
+					<table id='event_table' class="table table-hover">
+  					<thead>
+						<tr>
+							<th>Event Name</th>
+							<th>event Type</th>
+							<th>Business Unit</th>
+							<th>Product</th>
+							<th>Version</th>
+						</tr>
+					</thead>
+
+					</table>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row clearfix">
+		<div class="col-md-6 column border">
+			<div class="zTreeDemoBackground left">
+								<ul id="eventTree" class="ztree"></ul>
+							</div>
+
+
+
+		</div>
+		<div class="col-md-6 column border">
+			<div class='row'>
+				<b><label>description</label></b>
+								<p>here display event , rule group or rule description</p>
+
+			</div>
+
+			<div class='row'>
+
+			
+			<select class="form-control">
+              <option>Enter</option>
+              <option>Rule</option>
+              <option>Group</option>
+              
+            </select>
+
+            <input  id="search_rule_name" type="text" class="form-control" placeholder="rule/Group name">
+
+
+            <button id='search_ruleOrGroup' class="btn btn-success">Search</button>
+			</div>
+
+
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-6 column border">
+
+			<div id="source_label" class="label-container">
+
+   
+		</div>
+		</div>
+
+		<div class="col-md-6 column border">
+
+			<div id="target_label" class="label-container">
+  			<div></div>
+		</div>
+		</div>
+
+	</div>
+<div class="row clearfix">
+		<div class="col-md-12 column border">
+		<div class='row'>
+			 <button id='AddEvent' class="btn btn-success">Add to Event</button>
+
+  
+		</div>
+		</div>
+
+		
+
+	</div>
+
+
+</div>
+
+
+
+
+
+
+
+  </div>
+
+</div>
+  <div class="tab-pane" id="new-rule">
+  	<div class="container">
+	<div class="row clearfix border">
+		<div class="col-md-12 column">
+			<div class='row'>
+			<textarea class="form-control" placeholder="descriptions" rows="3"></textarea>
+			</div>
+
+		<div class="row clearfix">
+		<div class="col-md-4 column">
+
+			<label class="control-label">Business Unit</label>
+          <div class="controls">
+            <select class="form-control rule-dropdown">
+              <option>Enter</option>
+              <option>Casualty</option>
+              <option>Contract</option>
+            </select>
+          </div>
+
+			
+		</div>
+		<div class="col-md-4 column">
+
+			<label class="control-label">Product</label>
+          <div class="controls">
+            <select class="form-control rule-dropdown">
+              <option>Enter</option>
+              <option>General Liability</option>
+              <option>Inland Marine</option>
+             
+            </select>
+          </div>
+
+		</div>
+		<div class="col-md-4 column">
+			<label class="control-label">Product Version</label>
+          <div class="controls">
+            <select class="form-control rule-dropdown">
+              <option>Enter</option>
+              <option>1</option>
+              <option>2</option>
+              
+            </select>
+          </div>
+
+
+		</div>
+		</div>
+
+		<div class="row clearfix">
+		<div class="col-md-4 column">
+
+			<label class="control-label">Transaction</label>
+          <div class="controls">
+            <select class="form-control rule-dropdown">
+              <option>Enter</option>
+              <option>Quote</option>
+              <option>Bind</option>
+              <option>Policy</option>
+            </select>
+          </div>
+
+			
+		</div>
+		<div class="col-md-4 column">
+<label class="control-label">Rule Level</label>
+          <div class="controls">
+            <select class="form-control rule-dropdown">
+              <option>Enter</option>
+              <option>Policy</option>
+              <option>Location</option>
+              <option>Building</option>
+              <option>Coverage</option>
+            </select>
+          </div>
+			
+
+		</div>
+		<div class="col-md-4 column">
+			
+			<label class="control-label">Rule name</label>
+          <input type="text" class="form-control" placeholder="rule name"/>
+			
+		</div>
+
+		
+	</div>
+
+
+	<div class="row clearfix">
+		<div class="col-md-4 column">
+
+		<input id="fileupload" type="file" name="files[]" data-url="../restful/rule/upload">
+		</div>
+
+		<div class="col-md-4 column">
+
+				<button id='create_rule' class="btn btn-success">Create</button>
+		</div>
+
+		<div class="col-md-4 column">
+
+		</div>
+
+
+	</div>
+
+
+		</div>
+		
+	</div>
+</div>
+
+
+  </div>
+  
+</div>
+
+
+
+
+
+ 
+</body>
+
+
+
+
+
+
+<link rel="stylesheet" href="/dsl/html/css/zTreeStyle/zTreeStyle.css"
+ type="text/css">
+ <link rel="stylesheet" href="/dsl/html/css/codemirror.css">
+
+ <link rel="stylesheet" href="/dsl/html/css/font-awesome.min.css">
+
+
+
+
+<script type="text/template" id="rule-template">
+<tr>    <td id="id"hidden><%- id %></td>
+        <td><%- name %></td>
+        <td><%- ruleType %></td>
+        <td><%- ruleLevel %></td>
+        <td><%- business_unit %></td>
+         <td><%- product%></td>
+        <td><%- verison %></td>
+    	
+     </tr>
+  </script>
+
+<script type="text/template" id="rule_label_template">
+        	 <%- name %> <p type='rule' hidden><%- id %></p>
+</script>
+
+<script type="text/template" id="group_label_template">
+        	 <%- name %> <p type='group' hidden><%- id %></p>
+</script>
+
+
+
+ <script type="text/template" id="event-template"> 
+  		<p id='eventId' hidden><%- id %></p>
+        <td><%- eventName %></td>
+        
+  </script>
+
+<script type="text/template" id="label-template">
+           
+
+          <%- name %><i id='<%- name %>' class="icon-remove"></i>
+
+
+</script>
+
+ <script type="text/template" id="rule-form-template">
+           
+          <%- name %><i id='<%- name %>' class="icon close"></i>
+ </script>
+
+
+  
+ <link rel="stylesheet" href="css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+<script src="scripts/jquery.js"></script>
+
+<script src="/dsl/html/scripts/jquery.address.js"></script>
+
+<script src="scripts/bootstrap.min.js"></script>
+  <script src="/dsl/html/scripts/jquery.ui.widget.js"></script>
+<script src="/dsl/html/scripts/jquery.iframe-transport.js"></script>
+<script src="/dsl/html/scripts/jquery.fileupload.js"></script>
+  <script src="/dsl/html/javascript/underscore.js"></script>
+	<script src="/dsl/html/javascript/backbone.js"></script>
+	<script type="text/javascript"
+	src="/dsl/html/javascript/jquery.ztree.core-3.5.min.js"></script>
+
+<script src="/dsl/html/javascript/codemirror.js"></script>
+<script src="/dsl/html/javascript/groovy.js"></script>
+<script src="/dsl/html/javascript/jquery-ui.js"></script>
+<script src="/dsl/html/javascript/jquery.shapeshift.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+
+
+
+  
+<script src="/dsl/html/label.js"></script>
+<script src="/dsl/html/rules.js"></script>
+<script src="/dsl/html/event.js"></script>
+<script src="/dsl/html/rule_group.js"></script>
+<script src="/dsl/html/event_maintain.js"></script>
+<script src="/dsl/html/rule_miantian.js"></script>
+<script src="/dsl/html/scripts/backbone.modelbinding.js"></script>
+<script src="/dsl/html/scripts/dropzone.js"></script>
+<script src="/dsl/html/init.js"></script>
+<script src="/dsl/html/create-rule.js"></script>
+
+<script>
+
+</script>
+ 
+
+
+</html>
